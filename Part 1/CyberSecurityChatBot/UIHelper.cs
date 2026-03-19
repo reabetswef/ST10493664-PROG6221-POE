@@ -12,21 +12,38 @@ namespace CyberSecurityChatbot
             DrawBorder();
 
             Console.ForegroundColor = ConsoleColor.Cyan;
-            CenterText("CYBERSECURITY AWARENESS CHATBOT");
+            Console.WriteLine("CYBERSECURITY AWARENESS CHATBOT");
             Console.ResetColor();
 
             DrawBorder();
 
             // ASCII Logo
             Console.ForegroundColor = ConsoleColor.Green;
+
             Console.WriteLine(@"
-        [ 🔐 STAY SAFE ONLINE 🔐 ]
-            /\
-           /  \    CYBER BOT
-          /____\
-          |    |
-          |____|
+   ██████╗ ██╗   ██╗██████╗ ███████╗██████╗ 
+  ██╔════╝ ██║   ██║██╔══██╗██╔════╝██╔══██╗
+  ██║      ██║   ██║██████╔╝█████╗  ██████╔╝
+  ██║      ██║   ██║██╔══██╗██╔══╝  ██╔══██╗
+  ╚██████╗ ╚██████╔╝██████╔╝███████╗██║  ██║
+   ╚═════╝  ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
+
+        🔐 CYBER SECURITY CHATBOT 🔐
+
+        [ PROTECT • DETECT • RESPOND ]
+
+              .--------.
+             / .------. \
+            / /        \ \
+            | |  .--.  | |
+            | | (____) | |
+            | |        | |
+            | '--------' |
+             \__________/
+
+        >>> STAY SAFE ONLINE <<<
 ");
+
             Console.ResetColor();
 
             TypeText("\nWelcome! I will help you stay safe online.\n");

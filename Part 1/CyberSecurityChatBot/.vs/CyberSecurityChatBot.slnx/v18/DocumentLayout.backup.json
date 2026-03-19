@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 1\\CyberSecurityChatBot\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3ACA11A9-0EF8-A698-AF03-F9F11BD2B6C0}|CyberSecurityChatBot.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 1\\cybersecuritychatbot\\chatbot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3ACA11A9-0EF8-A698-AF03-F9F11BD2B6C0}|CyberSecurityChatBot.csproj|solutionrelative:chatbot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3ACA11A9-0EF8-A698-AF03-F9F11BD2B6C0}|CyberSecurityChatBot.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 1\\cybersecuritychatbot\\uihelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3ACA11A9-0EF8-A698-AF03-F9F11BD2B6C0}|CyberSecurityChatBot.csproj|solutionrelative:uihelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3ACA11A9-0EF8-A698-AF03-F9F11BD2B6C0}|CyberSecurityChatBot.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 1\\cybersecuritychatbot\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3ACA11A9-0EF8-A698-AF03-F9F11BD2B6C0}|CyberSecurityChatBot.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3ACA11A9-0EF8-A698-AF03-F9F11BD2B6C0}|CyberSecurityChatBot.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 1\\cybersecuritychatbot\\uihelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3ACA11A9-0EF8-A698-AF03-F9F11BD2B6C0}|CyberSecurityChatBot.csproj|solutionrelative:uihelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3ACA11A9-0EF8-A698-AF03-F9F11BD2B6C0}|CyberSecurityChatBot.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 1\\cybersecuritychatbot\\chatbot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3ACA11A9-0EF8-A698-AF03-F9F11BD2B6C0}|CyberSecurityChatBot.csproj|solutionrelative:chatbot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3ACA11A9-0EF8-A698-AF03-F9F11BD2B6C0}|CyberSecurityChatBot.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 1\\cybersecuritychatbot\\audioplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -36,20 +36,20 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 1\\CyberSecurityChatBot\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-18T09:41:58.765Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Chatbot.cs",
               "DocumentMoniker": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 1\\CyberSecurityChatBot\\Chatbot.cs",
               "RelativeDocumentMoniker": "Chatbot.cs",
               "ToolTip": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 1\\CyberSecurityChatBot\\Chatbot.cs",
               "RelativeToolTip": "Chatbot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-18T09:46:21.255Z",
               "EditorCaption": ""
@@ -64,18 +64,17 @@
               "RelativeToolTip": "AudioPlayer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-18T09:45:00.582Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-18T09:45:00.582Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "UIHelper.cs",
               "DocumentMoniker": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 1\\CyberSecurityChatBot\\UIHelper.cs",
               "RelativeDocumentMoniker": "UIHelper.cs",
               "ToolTip": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 1\\CyberSecurityChatBot\\UIHelper.cs",
               "RelativeToolTip": "UIHelper.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAowDoAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwA4AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-18T09:44:07.785Z",
               "EditorCaption": ""

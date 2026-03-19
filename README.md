@@ -1,5 +1,5 @@
 # ST10493664-PROG6221-POE
-# Cybersecurity Awareness Chatbot (POE Part 1)
+Cybersecurity Awareness Chatbot (POE Part 1)
 
 # Overview
 The Cybersecurity Awareness Chatbot is a .NET 8.0 C# console application developed in Visual Studio 2022.
@@ -31,7 +31,7 @@ The chatbot provides guidance on topics such as password security, phishing scam
 - Object-Oriented Programming (OOP)
 
 # Project Structure
-# The application is structured into the following main components:
+- The application is structured into the following main components:
 
 # Program.cs
 Entry point of the application.
@@ -89,6 +89,6 @@ Users can type natural language inputs such as:
 - Designed for educational purposes as part of a programming POE assignment.
 
 # Author
-Student ID: ST10493664
-Module: PROG6221
-Project: POE Part 1 – Cybersecurity Awareness Chatbot
+- Student ID: ST10493664
+- Module: PROG6221
+- Project: POE Part 1 – Cybersecurity Awareness Chatbot

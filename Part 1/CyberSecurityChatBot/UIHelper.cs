@@ -7,31 +7,44 @@ namespace CyberSecurityChatbot
     {
         public static void DisplayWelcomeScreen()
         {
+            Console.Clear();
+
+            DrawBorder();
+
             Console.ForegroundColor = ConsoleColor.Cyan;
-
-            Console.WriteLine("========================================");
-            Console.WriteLine("   CYBERSECURITY AWARENESS CHATBOT");
-            Console.WriteLine("========================================");
-
+            CenterText("CYBERSECURITY AWARENESS CHATBOT");
             Console.ResetColor();
 
-            // ASCII Art
+            DrawBorder();
+
+            // ASCII Logo
             Console.ForegroundColor = ConsoleColor.Green;
-
             Console.WriteLine(@"
-   _______  _______  _______  _______
-  (  ____ \(  ____ \(  ____ \(  ____ )
-  | (    \/| (    \/| (    \/| (    )|
-  | |      | (__    | (__    | (____)|
-  | | ____ |  __)   |  __)   |     __)
-  | | \_  )| (      | (      | (\ (
-  | (___) || (____/\| (____/\| ) \ \__
-  (_______)(_______/(_______/|/   \__/
+        [ 🔐 STAY SAFE ONLINE 🔐 ]
+            /\
+           /  \    CYBER BOT
+          /____\
+          |    |
+          |____|
 ");
-
             Console.ResetColor();
 
-            TypeText("Welcome to the Cybersecurity Awareness Bot...\n");
+            TypeText("\nWelcome! I will help you stay safe online.\n");
+        }
+
+        public static void DrawBorder()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(new string('=', 50));
+            Console.ResetColor();
+        }
+
+        public static void CenterText(string text)
+        {
+            int width = Console.WindowWidth;
+            int leftPadding = (width - text.Length) / 2;
+            Console.SetCursorPosition(Math.Max(leftPadding, 0), Console.CursorTop);
+            Console.WriteLine(text);
         }
 
         public static void TypeText(string message)
@@ -39,7 +52,7 @@ namespace CyberSecurityChatbot
             foreach (char c in message)
             {
                 Console.Write(c);
-                Thread.Sleep(20); // typing effect
+                Thread.Sleep(15);
             }
         }
     }

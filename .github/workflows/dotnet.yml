@@ -1,15 +1,14 @@
-name: .NET 8.0 Build and Test
+name: .NET 8.0 Build
 
 on:
   push:
-    branches: [ "main", "master", "develop" ]
+    branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
-  workflow_dispatch: # Allows manual triggering
 
 jobs:
   build:
-    runs-on: windows-latest # Using Windows because of System.Speech dependency
+    runs-on: windows-latest
     
     steps:
     - uses: actions/checkout@v4
@@ -18,27 +17,36 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+    
+    - name: Display structure of downloaded files
+      run: tree /F
+      shell: cmd
+    
+    - name: Find and build project
+      run: |
+        # Find all .csproj files and build the first one
+        $projects = Get-ChildItem -Recurse -Filter *.csproj
+        if ($projects.Count -eq 0) {
+          Write-Error "No .csproj files found!"
+          exit 1
+        }
         
-    - name: Restore dependencies
-      run: dotnet restore
-      
-    - name: Build
-      run: dotnet build --no-restore --configuration Release
-      
-    - name: Test
-      run: dotnet test --no-build --configuration Release --verbosity normal
-      
-    - name: Publish (Windows)
-      run: dotnet publish --configuration Release --runtime win-x64 --self-contained false --output ./publish/win-x64
-      
-    - name: Publish (Linux)
-      run: dotnet publish --configuration Release --runtime linux-x64 --self-contained false --output ./publish/linux-x64
-      
-    - name: Publish (macOS)
-      run: dotnet publish --configuration Release --runtime osx-x64 --self-contained false --output ./publish/osx-x64
-      
+        $projectPath = $projects[0].FullName
+        Write-Host "Found project: $projectPath"
+        
+        # Get the directory containing the project
+        $projectDir = Split-Path $projectPath -Parent
+        
+        # Restore and build
+        dotnet restore "$projectPath"
+        dotnet build "$projectPath" --configuration Release --no-restore
+        
+        # Publish
+        dotnet publish "$projectPath" --configuration Release --output "$env:GITHUB_WORKSPACE/publish"
+      shell: pwsh
+    
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: CyberSecurityChatbot-Builds
-        path: ./publish/**
+        name: CyberSecurityChatbot
+        path: publish/

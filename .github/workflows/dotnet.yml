@@ -1,38 +1,52 @@
-name: .NET Build and Test
+name: .NET 8.0 Build
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ "main", "master" ]
 
 jobs:
   build:
-    runs-on: windows-latest  # Using Windows since you have Windows-specific packages
+    runs-on: windows-latest
     
     steps:
     - uses: actions/checkout@v4
     
-    - name: Setup .NET
+    - name: Setup .NET 8.0
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
     
-    - name: Restore dependencies
-      run: dotnet restore CyberSecurityChatBot.csproj
+    - name: Display structure of downloaded files
+      run: tree /F
+      shell: cmd
     
-    - name: Build
-      run: dotnet build CyberSecurityChatBot.csproj --configuration Release --no-restore
-    
-    - name: Test
-      run: dotnet test CyberSecurityChatBot.csproj --configuration Release --no-build --verbosity normal
-      continue-on-error: true  # Continue even if no tests exist
-    
-    - name: Publish
-      run: dotnet publish CyberSecurityChatBot.csproj --configuration Release --output ./publish
+    - name: Find and build project
+      run: |
+        # Find all .csproj files and build the first one
+        $projects = Get-ChildItem -Recurse -Filter *.csproj
+        if ($projects.Count -eq 0) {
+          Write-Error "No .csproj files found!"
+          exit 1
+        }
+        
+        $projectPath = $projects[0].FullName
+        Write-Host "Found project: $projectPath"
+        
+        # Get the directory containing the project
+        $projectDir = Split-Path $projectPath -Parent
+        
+        # Restore and build
+        dotnet restore "$projectPath"
+        dotnet build "$projectPath" --configuration Release --no-restore
+        
+        # Publish
+        dotnet publish "$projectPath" --configuration Release --output "$env:GITHUB_WORKSPACE/publish"
+      shell: pwsh
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: CyberSecurityChatBot
-        path: ./publish/
+        name: CyberSecurityChatbot
+        path: publish/

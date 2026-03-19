@@ -23,7 +23,7 @@ jobs:
       run: dotnet restore
 
     - name: Build project
-      run: dotnet build --no-restore
+      run: dotnet build --configuration Release
 
     - name: Skip tests
       run: echo "No tests yet"

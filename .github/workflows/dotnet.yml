@@ -17,13 +17,16 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '8.0.x'   # ✅ FIXED VERSION
+        dotnet-version: '8.0.x'
 
-    - name: Restore dependencies
-      run: dotnet restore
+    - name: Display files (debug)
+      run: ls -R
+
+    - name: Restore project
+      run: dotnet restore ./CyberSecurityChatbot.csproj
 
     - name: Build project
-      run: dotnet build --configuration Release
+      run: dotnet build ./CyberSecurityChatbot.csproj --configuration Release --no-restore
 
     - name: Skip tests
       run: echo "No tests yet"

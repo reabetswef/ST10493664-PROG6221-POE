@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace CyberSecurityChatbot
 {
@@ -9,6 +10,7 @@ namespace CyberSecurityChatbot
         public void StartChat()
         {
             AskUserName();
+            ShowHelpMenu();
 
             while (true)
             {
@@ -16,15 +18,16 @@ namespace CyberSecurityChatbot
                 Console.Write("\nYou: ");
                 Console.ResetColor();
 
-                string input = Console.ReadLine().ToLower();
+                string input = Console.ReadLine()?.ToLower().Trim();
 
+                // ✅ Input validation
                 if (string.IsNullOrWhiteSpace(input))
                 {
                     DefaultResponse();
                     continue;
                 }
 
-                if (input.Contains("exit"))
+                if (input == "exit")
                 {
                     Goodbye();
                     break;
@@ -36,42 +39,64 @@ namespace CyberSecurityChatbot
 
         private void AskUserName()
         {
-            Console.Write("Enter your name: ");
+            UIHelper.TypeText("\nEnter your name: ");
             userName = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(userName))
-            {
                 userName = "User";
-            }
 
-            Console.WriteLine($"Hello, {userName}! How can I help you today?");
+            UIHelper.TypeText($"\nWelcome, {userName}! I'm your Cybersecurity Assistant.\n");
+        }
+
+        private void ShowHelpMenu()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("\nYou can ask me about:");
+            Console.WriteLine("- Password safety");
+            Console.WriteLine("- Phishing scams");
+            Console.WriteLine("- Safe browsing");
+            Console.WriteLine("- General questions");
+            Console.WriteLine("Type 'exit' to quit.\n");
+            Console.ResetColor();
         }
 
         private void Respond(string input)
         {
             if (input.Contains("how are you"))
             {
-                Console.WriteLine("I'm just a bot, but I'm here to help you stay safe online!");
+                BotReply("I'm running perfectly and ready to help!");
             }
             else if (input.Contains("purpose"))
             {
-                Console.WriteLine("My purpose is to educate you about cybersecurity and keep you safe online.");
+                BotReply("I help users stay safe online by teaching cybersecurity basics.");
             }
             else if (input.Contains("ask"))
             {
-                Console.WriteLine("You can ask me about passwords, phishing, and safe browsing.");
+                BotReply("You can ask about passwords, phishing, and safe browsing.");
             }
             else if (input.Contains("password"))
             {
-                Console.WriteLine("Use strong passwords with a mix of letters, numbers, and symbols.");
+                BotReply("Use strong passwords: at least 12 characters, mix symbols, numbers, and letters. Never reuse passwords.");
             }
             else if (input.Contains("phishing"))
             {
-                Console.WriteLine("Be careful of suspicious emails asking for personal information.");
+                BotReply("Phishing scams try to trick you into giving personal info. Never click suspicious links and always verify the sender.");
             }
             else if (input.Contains("browsing"))
             {
-                Console.WriteLine("Only visit secure websites and avoid clicking unknown links.");
+                BotReply("Only browse secure websites (HTTPS). Avoid downloading files from unknown sources.");
+            }
+            else if (input.Contains("malware"))
+            {
+                BotReply("Malware is harmful software. Install antivirus and avoid suspicious downloads.");
+            }
+            else if (input.Contains("safe"))
+            {
+                BotReply("Keep your software updated, use strong passwords, and avoid public Wi-Fi for sensitive tasks.");
+            }
+            else if (input.Contains("thank"))
+            {
+                BotReply("You're welcome! Stay cyber safe.");
             }
             else
             {
@@ -79,14 +104,29 @@ namespace CyberSecurityChatbot
             }
         }
 
+        private void BotReply(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("\nBot: ");
+            Console.ResetColor();
+
+            foreach (char c in message)
+            {
+                Console.Write(c);
+                Thread.Sleep(15);
+            }
+
+            Console.WriteLine();
+        }
+
         private void DefaultResponse()
         {
-            Console.WriteLine("I didn't quite understand that. Could you rephrase?");
+            BotReply("I didn't quite understand that. Try asking about passwords, phishing, or browsing.");
         }
 
         private void Goodbye()
         {
-            Console.WriteLine($"Goodbye, {userName}! Stay safe online.");
+            BotReply($"Goodbye, {userName}! Stay safe online.");
         }
     }
 }

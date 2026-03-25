@@ -7,21 +7,85 @@ namespace CyberSecurityChatbot
     class Chatbot
     {
         private string userName;
+        public Chatbot(string name)
+        {
+            userName = name;
+        }
 
         public void StartChat()
         {
-            AskUserName();
+            bool running = true;
+
+            while (running)
+            {
+                UIHelper.ShowMainMenu();
+                string choice = Console.ReadLine()?.Trim();
+
+                switch (choice)
+                {
+                    case "1":
+                        RunChat();
+                        break;
+
+                    case "2":
+                        UIHelper.ShowHelp();
+                        break;
+
+                    case "3":
+                        running = false;
+                        Goodbye();
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid option. Try again.");
+                        Thread.Sleep(1000);
+                        break;
+                }
+            }
+        }
+
+        private void ShowHelpMenu()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+
+            Console.WriteLine("\nYou can ask me about:\n");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("1. Password Safety");
+            Console.WriteLine("2. Phishing Scams");
+            Console.WriteLine("3. Malware & Viruses");
+            Console.WriteLine("4. Safe Browsing");
+            Console.WriteLine("5. Public Wi-Fi Safety");
+            Console.WriteLine("6. Identity Theft");
+            Console.WriteLine("7. Privacy & Data Protection");
+            Console.WriteLine("8. Email Security");
+            Console.WriteLine("9. Mobile Device Safety");
+            Console.WriteLine("10. General Cybersecurity Tips");
+
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("\nYou can also ask general questions like:");
+            Console.WriteLine("- 'How are you?'");
+            Console.WriteLine("- 'What is your purpose?'");
+            Console.WriteLine("- 'What can I ask you about?'\n");
+
+            Console.WriteLine("Type 'exit' anytime to return to the main menu.");
+            Console.ResetColor();
+        }
+
+        private void RunChat()
+        {
             ShowHelpMenu();
 
             while (true)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("\nYou: ");
+                Console.Write($"\n{userName}: ");
                 Console.ResetColor();
 
                 string input = Console.ReadLine()?.ToLower().Trim();
 
-                // ✅ Input validation
                 if (string.IsNullOrWhiteSpace(input))
                 {
                     DefaultResponse();
@@ -30,7 +94,9 @@ namespace CyberSecurityChatbot
 
                 if (input == "exit")
                 {
-                    Goodbye();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine("\nReturning to menu...\n");
+                    Console.ResetColor();
                     break;
                 }
 
@@ -38,66 +104,13 @@ namespace CyberSecurityChatbot
             }
         }
 
-        private void AskUserName()
-        {
-            UIHelper.TypeText("\nEnter your name: ");
-            userName = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(userName))
-                userName = "User";
-
-            UIHelper.TypeText($"\nWelcome, {userName}! I'm your Cybersecurity Assistant.\n");
-        }
-
-        private void ShowHelpMenu()
-        {
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("\nYou can ask me about:");
-            Console.WriteLine("- Password safety");
-            Console.WriteLine("- Phishing scams");
-            Console.WriteLine("- Safe browsing");
-            Console.WriteLine("- General questions");
-            Console.WriteLine("Type 'exit' to quit.\n");
-            Console.ResetColor();
-        }
-
         private void Respond(string input)
         {
-            if (input.Contains("how are you"))
+            string response = ResponseHandler.GetResponse(input);
+
+            if (response != null)
             {
-                BotReply("I'm running perfectly and ready to help!");
-            }
-            else if (input.Contains("purpose"))
-            {
-                BotReply("I help users stay safe online by teaching cybersecurity basics.");
-            }
-            else if (input.Contains("ask"))
-            {
-                BotReply("You can ask about passwords, phishing, and safe browsing.");
-            }
-            else if (input.Contains("password"))
-            {
-                BotReply("Use strong passwords: at least 12 characters, mix symbols, numbers, and letters. Never reuse passwords.");
-            }
-            else if (input.Contains("phishing"))
-            {
-                BotReply("Phishing scams try to trick you into giving personal info. Never click suspicious links and always verify the sender.");
-            }
-            else if (input.Contains("browsing"))
-            {
-                BotReply("Only browse secure websites (HTTPS). Avoid downloading files from unknown sources.");
-            }
-            else if (input.Contains("malware"))
-            {
-                BotReply("Malware is harmful software. Install antivirus and avoid suspicious downloads.");
-            }
-            else if (input.Contains("safe"))
-            {
-                BotReply("Keep your software updated, use strong passwords, and avoid public Wi-Fi for sensitive tasks.");
-            }
-            else if (input.Contains("thank"))
-            {
-                BotReply("You're welcome! Stay cyber safe.");
+                BotReply(response);
             }
             else
             {
@@ -111,22 +124,25 @@ namespace CyberSecurityChatbot
             Console.Write("\nBot: ");
             Console.ResetColor();
 
+            Thread.Sleep(300);
+
             foreach (char c in message)
             {
                 Console.Write(c);
                 Thread.Sleep(15);
             }
 
-            Console.WriteLine();
+            Console.WriteLine($"\n({userName}, feel free to ask more!)");
         }
 
         private void DefaultResponse()
         {
-            BotReply("I didn't quite understand that. Try asking about passwords, phishing, or browsing.");
+            BotReply("I didn't quite understand that. Try asking about passwords, phishing, malware, or safe browsing.");
         }
 
         private void Goodbye()
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
             BotReply($"Goodbye, {userName}! Stay safe online.");
         }
     }

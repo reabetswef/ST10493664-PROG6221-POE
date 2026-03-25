@@ -6,14 +6,22 @@ namespace CyberSecurityChatbot
     class Program
     {
         static void Main(string[] args)
-        {         
-            // Display ASCII UI
+        {
+
             UIHelper.DisplayWelcomeScreen();
-            // Play voice greeting
             AudioPlayer.PlayGreeting();
 
-            // Start chatbot
-            Chatbot bot = new Chatbot();
+            Console.Write("\nEnter your name: ");
+            string userName = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(userName))
+                userName = "User";
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"\nWelcome, {userName}! Let's get started.");
+            Console.ResetColor();
+
+            Chatbot bot = new Chatbot(userName);
             bot.StartChat();
 
             Console.ReadLine();

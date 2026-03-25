@@ -8,8 +8,6 @@ namespace CyberSecurityChatbot
     {
         public static void DisplayWelcomeScreen()
         {
-            Console.Clear();
-
             DrawBorder();
 
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -72,6 +70,59 @@ namespace CyberSecurityChatbot
                 Console.Write(c);
                 Thread.Sleep(15);
             }
+        }
+
+        public static void ShowMainMenu()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("\n========================================");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("MAIN MENU");
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("========================================");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("1 → Start Chat");
+            Console.WriteLine("2 → Help");
+            Console.WriteLine("3 → Exit");
+
+            Console.ResetColor();
+            Console.Write("\nSelect an option: ");
+        }
+
+        public static void ShowHelp()
+        {
+            DrawBorder();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            CenterText("HELP SECTION");
+            Console.ResetColor();
+
+            DrawBorder();
+
+            Console.WriteLine("\nThis chatbot helps you stay safe online.\n");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("You can ask about:");
+            Console.WriteLine("1. Password Safety");
+            Console.WriteLine("2. Phishing Scams");
+            Console.WriteLine("3. Malware & Viruses");
+            Console.WriteLine("4. Safe Browsing");
+            Console.WriteLine("5. Public Wi-Fi Safety");
+            Console.WriteLine("6. Identity Theft");
+            Console.WriteLine("7. Privacy & Data Protection");
+            Console.WriteLine("8. Email Security");
+            Console.WriteLine("9. Mobile Device Safety");
+            Console.WriteLine("10. General Cybersecurity Tips");
+            Console.ResetColor();
+
+            Console.WriteLine("\nType 'exit' during chat to return to menu.\n");
+
+            DrawBorder();
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
     }
 }

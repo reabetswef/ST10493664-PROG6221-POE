@@ -2,7 +2,7 @@
 Cybersecurity Awareness Chatbot (POE Part 1)
 
 # Overview
-The Cybersecurity Awareness Chatbot is a .NET 8.0 C# console application developed in Visual Studio 2022.
+The Cybersecurity Awareness Chatbot is a .NET 10.0 C# console application developed in Visual Studio 2022.
 It is designed to educate users on basic cybersecurity principles through an interactive command-line chatbot experience.
 
 The chatbot provides guidance on topics such as password security, phishing scams, safe browsing practices, and general online safety awareness.
@@ -23,7 +23,7 @@ The chatbot provides guidance on topics such as password security, phishing scam
 - Exit command to safely end the session
 
 # Technologies Used
-- C# (.NET 8.0)
+- C# (.NET 10.0)
 - Console Application (CLI)
 - Visual Studio 2022
 - System.Media (audio playback)
@@ -79,7 +79,7 @@ Users can type natural language inputs such as:
 -exit
 
 # Requirements
-- .NET 8.0 SDK
+- .NET 10.0 SDK
 - Windows OS (required for System.Speech and audio playback)
 - Visual Studio 2022 recommended
 

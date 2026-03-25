@@ -174,8 +174,7 @@ namespace CybersecurityAwarenessBot
 
             // Default response
             return "I didn't get that! I specialize in cybersecurity topics like password " +
-                "\nsafety, phishing, safe browsing, malware protection, social engineering, " +
-                "\ndata privacy, MFA, backups, and identity theft. Could you ask me something about those areas? Or type 'what can I ask' for more ideas.";
+                "\nsafety, phishing, safe browsing, malware protection, etc...";
         }
     }
 }

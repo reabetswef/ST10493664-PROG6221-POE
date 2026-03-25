@@ -9,7 +9,7 @@ namespace CybersecurityAwarenessBot
         // Displays the main logo for the Cybersecurity Awareness Bot.
         public static void DisplayLogo()
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Red;
             string logo = @"
     ╔══════════════════════════════════════════════════════════════════════╗
     ║                                                                      ║

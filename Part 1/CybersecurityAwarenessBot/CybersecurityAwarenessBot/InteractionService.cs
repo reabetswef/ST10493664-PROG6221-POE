@@ -84,7 +84,7 @@ namespace CybersecurityAwarenessBot
                 }
 
                 string response = responseService.GetResponse(userInput);
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Green;
                 TypeWithDelay($"\nBot: {response}", TypingDelayMs);
                 Console.ResetColor();
                 Console.WriteLine();

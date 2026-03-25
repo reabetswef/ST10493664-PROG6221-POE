@@ -1,16 +1,12 @@
-﻿// File: AsciiArt.cs
+﻿//ST10493664 PROG6221 POE - Part 1 - Cybersecurity Awareness Bot
 using System;
 
 namespace CybersecurityAwarenessBot
 {
-    /// <summary>
-    /// Contains ASCII art for visual enhancement of the chatbot.
-    /// </summary>
+    // Contains ASCII art for visual enhancement of the chatbot.
     public static class AsciiArt
     {
-        /// <summary>
-        /// Displays the main logo for the Cybersecurity Awareness Bot.
-        /// </summary>
+        // Displays the main logo for the Cybersecurity Awareness Bot.
         public static void DisplayLogo()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -24,12 +20,12 @@ namespace CybersecurityAwarenessBot
     ║   ╚██████╗   ██║   ██████╔╝███████╗██║  ██║   ██║  ██║╚███╔███╔╝     ║
     ║    ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝  ╚═╝ ╚══╝╚══╝      ║
     ║                                                                      ║
-    ║           ██████╗ ██████╗ ████████╗                               ║
-    ║          ██╔═══██╗██╔══██╗╚══██╔══╝                               ║
-    ║          ██║   ██║██████╔╝   ██║                                  ║
-    ║          ██║   ██║██╔══██╗   ██║                                  ║
-    ║          ╚██████╔╝██████╔╝   ██║                                  ║
-    ║           ╚═════╝ ╚═════╝    ╚═╝                                  ║
+    ║                     ██████╗  ██████╗ ████████╗                       ║
+    ║                     ██╔══██╗██╔═══██╗╚══██╔══╝                       ║
+    ║                     ██████╔╝██║   ██║   ██║                          ║
+    ║                     ██╔══██╗██║   ██║   ██║                          ║
+    ║                     ██████╔╝╚██████╔╝   ██║                          ║
+    ║                     ╚═════╝  ╚═════╝    ╚═╝                          ║
     ║                                                                      ║
     ║                     CYBERSECURITY AWARENESS BOT                      ║
     ║                         Stay Safe Online!                            ║
@@ -41,9 +37,7 @@ namespace CybersecurityAwarenessBot
             Console.WriteLine();
         }
 
-        /// <summary>
-        /// Displays a decorative border for section headers.
-        /// </summary>
+        // Displays a decorative border for section headers.
         public static void DisplaySectionHeader(string title)
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
@@ -54,9 +48,7 @@ namespace CybersecurityAwarenessBot
             Console.ResetColor();
         }
 
-        /// <summary>
-        /// Displays a simple decorative divider.
-        /// </summary>
+        // Displays a simple decorative divider.
         public static void DisplayDivider()
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;

@@ -1,20 +1,16 @@
-﻿// File: VoiceService.cs
+﻿//ST10493664 PROG6221 POE - Part 1 - Cybersecurity Awareness Bot
 using System;
 using System.Media;
 using System.IO;
 
 namespace CybersecurityAwarenessBot
 {
-    /// <summary>
-    /// Handles the audio greeting functionality for the chatbot.
-    /// </summary>
+    // Handles the audio greeting functionality for the chatbot.
     public static class VoiceService
     {
         private const string AudioFilePath = "greeting.wav";
 
-        /// <summary>
-        /// Plays the welcome audio greeting.
-        /// </summary>
+        // Plays the welcome audio greeting.
         public static void PlayGreeting()
         {
             try

@@ -119,11 +119,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rf9re\\Downloads\\CybersecurityAwarenessBot\\CybersecurityAwarenessBot\\CybersecurityAwarenessBot.csproj",
+      "projectUniqueName": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 1\\CybersecurityAwarenessBot\\CybersecurityAwarenessBot\\CybersecurityAwarenessBot.csproj",
       "projectName": "CybersecurityAwarenessBot",
-      "projectPath": "C:\\Users\\rf9re\\Downloads\\CybersecurityAwarenessBot\\CybersecurityAwarenessBot\\CybersecurityAwarenessBot.csproj",
+      "projectPath": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 1\\CybersecurityAwarenessBot\\CybersecurityAwarenessBot\\CybersecurityAwarenessBot.csproj",
       "packagesPath": "C:\\Users\\rf9re\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rf9re\\Downloads\\CybersecurityAwarenessBot\\CybersecurityAwarenessBot\\obj\\",
+      "outputPath": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 1\\CybersecurityAwarenessBot\\CybersecurityAwarenessBot\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

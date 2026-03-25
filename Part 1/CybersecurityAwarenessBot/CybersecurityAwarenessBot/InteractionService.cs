@@ -1,19 +1,15 @@
-﻿// File: InteractionService.cs
+﻿//ST10493664 PROG6221 POE - Part 1 - Cybersecurity Awareness Bot
 using System;
 using System.Threading.Tasks;
 
 namespace CybersecurityAwarenessBot
 {
-    /// <summary>
-    /// Handles user interaction, including name collection and the main chat loop.
-    /// </summary>
+    // Handles user interaction, including name collection and the main chat loop.
     public static class InteractionService
     {
-        private const int TypingDelayMs = 30; // Simulates typing effect
+        private const int TypingDelayMs = 30;
 
-        /// <summary>
-        /// Asks the user for their name and returns it.
-        /// </summary>
+        // Asks the user for their name and returns it.
         public static string GetUserName()
         {
             AsciiArt.DisplaySectionHeader("WELCOME");
@@ -25,7 +21,7 @@ namespace CybersecurityAwarenessBot
             Console.ResetColor();
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("\n>> ");
+            Console.Write("\nYou: ");
             string name = Console.ReadLine();
             Console.ResetColor();
 
@@ -36,7 +32,7 @@ namespace CybersecurityAwarenessBot
                 TypeWithDelay("I didn't catch that. Could you please tell me your name?", TypingDelayMs);
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("\n>> ");
+                Console.Write("\nYou: ");
                 name = Console.ReadLine();
                 Console.ResetColor();
             }
@@ -51,9 +47,7 @@ namespace CybersecurityAwarenessBot
             return name;
         }
 
-        /// <summary>
-        /// Starts the main chat loop where users can ask cybersecurity questions.
-        /// </summary>
+        // Starts the main chat loop where users can ask cybersecurity questions.
         public static async Task StartChatLoop(string userName, ResponseService responseService)
         {
             bool running = true;
@@ -62,7 +56,7 @@ namespace CybersecurityAwarenessBot
             Console.ForegroundColor = ConsoleColor.Green;
             TypeWithDelay($"So {userName}, what would you like to know about cybersecurity?", TypingDelayMs);
             Console.WriteLine();
-            TypeWithDelay("You can ask me about:\n- Password safety\n- Phishing scams\n- Safe browsing\n- How I'm doing\n- My purpose\n- What I can help with", TypingDelayMs);
+            TypeWithDelay("You can ask me about:\n- Password safety\n- Phishing scams\n- Safe browsing\n- Malware protection\n- Social engineering\n- Data privacy\n- Multi-factor authentication\n- Secure backups\n- Identity theft\n- How I'm doing\n- My purpose\n- What I can help with", TypingDelayMs);
             TypeWithDelay("\n\nType 'exit' at any time to end our conversation.", TypingDelayMs);
             Console.ResetColor();
 
@@ -70,7 +64,7 @@ namespace CybersecurityAwarenessBot
             {
                 AsciiArt.DisplayDivider();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write($"{userName} >> ");
+                Console.Write($"{userName}: ");
                 string userInput = Console.ReadLine();
                 Console.ResetColor();
 
@@ -91,28 +85,24 @@ namespace CybersecurityAwarenessBot
 
                 string response = responseService.GetResponse(userInput);
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                TypeWithDelay($"\nBot >> {response}", TypingDelayMs);
+                TypeWithDelay($"\nBot: {response}", TypingDelayMs);
                 Console.ResetColor();
                 Console.WriteLine();
 
-                await Task.Delay(500); // Small pause between interactions
+                await Task.Delay(500);
             }
         }
 
-        /// <summary>
-        /// Handles invalid input by showing a default message.
-        /// </summary>
+        // Handles invalid input by showing a default message.
         private static void HandleInvalidInput()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            TypeWithDelay("\nBot >> I didn't quite understand that. Could you rephrase?", TypingDelayMs);
+            TypeWithDelay("\nBot: I didn't quite understand that. Could you rephrase?", TypingDelayMs);
             Console.ResetColor();
             Console.WriteLine();
         }
 
-        /// <summary>
-        /// Simulates a typing effect by printing characters one by one with a delay.
-        /// </summary>
+        // Simulates a typing effect by printing characters one by one with a delay.
         private static void TypeWithDelay(string message, int delayMs)
         {
             foreach (char c in message)

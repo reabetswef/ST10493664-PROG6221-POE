@@ -25,7 +25,7 @@ The chatbot provides guidance on topics such as password security, phishing scam
 # Technologies Used
 - C# (.NET 10.0)
 - Console Application (CLI)
-- Visual Studio 2022
+- Visual Studio 2026
 - System.Media (audio playback)
 - System.Speech (speech synthesis support)
 - Object-Oriented Programming (OOP)
@@ -81,7 +81,7 @@ Users can type natural language inputs such as:
 # Requirements
 - .NET 10.0 SDK
 - Windows OS (required for System.Speech and audio playback)
-- Visual Studio 2022 recommended
+- Visual Studio 2026 recommended
 
 # Notes
 - The chatbot uses simple keyword matching for responses.

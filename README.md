@@ -7,6 +7,9 @@ It is designed to educate users on basic cybersecurity principles through an int
 
 The chatbot provides guidance on topics such as password security, phishing scams, safe browsing practices, and general online safety awareness.
 
+# Links
+YouTube Video: https://youtu.be/2md7aNUqnPE?si=DoXeLX50uAPTMoxz
+
 # Features
 - Interactive console-based chatbot interface
 - Username personalization and session-based interaction

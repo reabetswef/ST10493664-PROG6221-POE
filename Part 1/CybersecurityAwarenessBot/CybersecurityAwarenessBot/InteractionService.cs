@@ -56,7 +56,14 @@ namespace CybersecurityAwarenessBot
             Console.ForegroundColor = ConsoleColor.Green;
             TypeWithDelay($"So {userName}, what would you like to know about cybersecurity?", TypingDelayMs);
             Console.WriteLine();
-            TypeWithDelay("You can ask me about:\n- Password safety\n- Phishing scams\n- Safe browsing\n- Malware protection\n- Social engineering\n- Data privacy\n- Multi-factor authentication\n- Secure backups\n- Identity theft\n- How I'm doing\n- My purpose\n- What I can help with", TypingDelayMs);
+            TypeWithDelay("You can ask me about:\n- Password safety\n- Phishing scams\n- Safe browsing\n- Malware protection\n- Social engineering\n- Data privacy\n- Multi-factor authentication\n- Secure backups\n- Identity theft", TypingDelayMs);
+            Console.ResetColor();
+
+            // Grey out the other options
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            TypeWithDelay("\n\nYou can also ask me about:\n- How I'm doing\n- My purpose\n- What I can help with", TypingDelayMs);
+
+            // Exit
             TypeWithDelay("\n\nType 'exit' at any time to end our conversation.", TypingDelayMs);
             Console.ResetColor();
 

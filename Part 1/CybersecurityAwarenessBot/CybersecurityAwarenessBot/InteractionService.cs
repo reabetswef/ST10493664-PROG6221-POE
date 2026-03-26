@@ -41,7 +41,7 @@ namespace CybersecurityAwarenessBot
             name = char.ToUpper(name[0]) + name.Substring(1).ToLower();
 
             Console.ForegroundColor = ConsoleColor.Green;
-            TypeWithDelay($"\nWonderful to meet you, {name}! I'm here to help you stay safe online.", TypingDelayMs);
+            TypeWithDelay($"\nNice to meet you, {name}! I'm here to help you stay safe online.", TypingDelayMs);
             Console.ResetColor();
 
             return name;

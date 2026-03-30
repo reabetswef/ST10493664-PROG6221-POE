@@ -67,8 +67,8 @@ The application is organized into the following classes for clean code separatio
 ## How It Works
 1. **Application Startup**
    - Console title is set to "Cybersecurity Awareness Bot"
-   - VoiceService plays voice greeting (if `greeting.wav` exists)
    - AsciiArt displays ASCII art logo in cyan
+   - VoiceService plays voice greeting (if `greeting.wav` exists)
 
 2. **User Greeting**
    - InteractionService asks for user's name with typing effect
@@ -151,7 +151,7 @@ Users can type natural language inputs such as:
 
 
 ## Author
-- **Full Name:** ST10493664
+- **Full Name:** Reabetswe Tebogo Fafudi
 - **Student ID:** ST10493664
 - **Module:** PROG6221
 - **Project:** POE Part 1 – Cybersecurity Awareness Chatbot

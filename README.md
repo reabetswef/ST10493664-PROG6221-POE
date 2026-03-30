@@ -21,8 +21,8 @@ The chatbot provides guidance on topics such as password security, phishing scam
 - **ASCII art logo** displayed at startup
 - **Colored text interface**:
   - Bot messages: Green
-  - User messages: Pink/Magenta
-  - ASCII art: Cyan
+  - User messages: Yellow
+  - ASCII art: Red
   - Section headers: Magenta
   - Dividers: Dark Gray
   - Error messages: Red

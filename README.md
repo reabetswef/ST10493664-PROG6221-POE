@@ -1,10 +1,12 @@
 # ST10493664-PROG6221-POE
-## Cybersecurity Awareness Chatbot (POE Part 1)
+- Cybersecurity Awareness Chatbot (POE Part 1)
+
 
 ## Overview
-The Cybersecurity Awareness Chatbot is a .NET 10.0 C# console application developed in Visual Studio 2022. It is designed to educate users on basic cybersecurity principles through an interactive command-line chatbot experience.
+The Cybersecurity Awareness Chatbot is a .NET 10.0 C# console application developed in Visual Studio 2026. It is designed to educate users on basic cybersecurity principles through an interactive command-line chatbot experience.
 
 The chatbot provides guidance on topics such as password security, phishing scams, safe browsing practices, malware protection, social engineering, data privacy, multi-factor authentication, and general online safety awareness.
+
 
 ## Features
 ### Core Functionality
@@ -41,10 +43,11 @@ The chatbot responds to questions about:
 - **Ransomware** - Protection and recovery
 - **Software updates** - Importance of patching
 
+
 ## Technologies Used
 - **C# (.NET 10.0)** - Core programming language
 - **Console Application (CLI)** - User interface platform
-- **Visual Studio 2022** - Development environment
+- **Visual Studio 2026** - Development environment
 - **System.Media** - Audio playback for voice greeting
 - **Object-Oriented Programming (OOP)** - Code structure with multiple classes
 
@@ -59,6 +62,7 @@ The application is organized into the following classes for clean code separatio
 | **AsciiArt.cs** | Responsible for ASCII logo display, section headers, decorative borders, and visual enhancements. |
 | **InteractionService.cs** | Manages user interaction including name collection, chat loop, typing animation effect, color formatting, and conversation flow control. |
 | **ResponseService.cs** | Generates responses using keyword matching with if-else statements for cybersecurity topics. Handles input validation and exit commands. |
+
 
 ## How It Works
 1. **Application Startup**
@@ -88,6 +92,7 @@ The application is organized into the following classes for clean code separatio
    - Color coding distinguishes bot (green) from user (magenta)
    - AsciiArt provides dividers and section headers to organize the interface
 
+
 ## Example Commands
 Users can type natural language inputs such as:
 - `password safety` or `how to create strong password`
@@ -104,27 +109,29 @@ Users can type natural language inputs such as:
 - `purpose` or `what is your purpose`
 - `what can i ask`
 
+
 ### To exit the application:
 - exit
+
 
 ## Requirements
 - **.NET 10.0 SDK** or later
 - **Windows OS** (required for System.Media audio playback)
-- **Visual Studio 2022** recommended for development
+- **Visual Studio 2026** recommended for development
 - **greeting.wav** audio file placed in the output directory (optional)
+
 
 ## Setup Instructions
 1. **Clone the repository**
 2. **Open the project**
-- Open Visual Studio 2022
+- Open Visual Studio 2026
 - Open the solution file (`.sln`)
-
 3. **Add audio file (optional)**
 - Place `greeting.wav` in the `bin/Debug/net10.0/` folder
 - Or set file to "Copy to Output Directory" in properties
-
 4. **Build and run**
 - Press `F5` to build and run the application
+
 
 ## GitHub Requirements (POE Submission)
 - ✅ Minimum of 6 meaningful commits
@@ -132,6 +139,7 @@ Users can type natural language inputs such as:
 - ✅ CI workflow passes with green check mark
 - ✅ Screenshot of successful CI run in README
 - ✅ All source code and multimedia files included
+
 
 ## Notes
 - The chatbot uses simple keyword matching with if-else statements for responses (no dictionaries for simplicity)
@@ -141,7 +149,9 @@ Users can type natural language inputs such as:
 - Designed for educational purposes as part of a programming POE assignment
 - All code follows OOP principles with clear separation of concerns
 
+
 ## Author
+- **Full Name:** ST10493664
 - **Student ID:** ST10493664
 - **Module:** PROG6221
 - **Project:** POE Part 1 – Cybersecurity Awareness Chatbot

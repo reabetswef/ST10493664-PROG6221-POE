@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CybersecurityBotWPF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49c00059023dd83a2eade3a6ca155cb4b2ba62bd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1fc661e68f3b0f72477c29c3104a60843e1186e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("CybersecurityBotWPF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CybersecurityBotWPF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

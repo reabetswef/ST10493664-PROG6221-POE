@@ -18,18 +18,32 @@ namespace CybersecurityBotWPF
         private ConversationMemory _memory;
         private string _currentUserName = "Guest";
         private SoundPlayer _soundPlayer;
-        private VoiceService _voiceService;
 
         public MainWindow()
         {
             InitializeComponent();
+            LoadAsciiArt();
             InitializeServices();
 
-            // Play greeting on startup
-            PlayVoiceGreeting();
-
-            // Add welcome message
             AddBotMessage("Hello! I'm your Cybersecurity Awareness Assistant. What's your name?");
+        }
+
+        private void LoadAsciiArt()
+        {
+            string asciiArt = @"
+╔════════════════════════════════════════════════════════════════════╗
+║                                                                    ║
+║                                                                    ║
+║                   CYBER SECURITY AWARENESS BOT                     ║
+║                                                                    ║
+║                        Stay Safe Online!                           ║
+║                                                                    ║
+║                   🔒 🛡️ 🔐 🔑 🔒 🛡️ 🔐 🔑 🔒                   ║
+║                                                                    ║
+║                                                                    ║
+╚════════════════════════════════════════════════════════════════════╝";
+
+            AsciiArtTextBlock.Text = asciiArt;
         }
 
         private void InitializeServices()
@@ -37,7 +51,12 @@ namespace CybersecurityBotWPF
             _responseService = new ResponseService();
             _sentimentService = new SentimentService();
             _memory = new ConversationMemory();
-            _voiceService = new VoiceService();
+        }
+
+        private void PlayVoiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            PlayVoiceGreeting();
+            AddBotMessage("🔊 Playing greeting message...");
         }
 
         private void PlayVoiceGreeting()
@@ -46,7 +65,6 @@ namespace CybersecurityBotWPF
             {
                 string audioPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "greeting.wav");
 
-                // Also check in bin/Debug/netX.X/ folder if not found in Assets
                 if (!File.Exists(audioPath))
                 {
                     audioPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "greeting.wav");
@@ -54,19 +72,18 @@ namespace CybersecurityBotWPF
 
                 if (File.Exists(audioPath))
                 {
-                    _soundPlayer?.Dispose(); // Dispose old player if exists
+                    _soundPlayer?.Dispose();
                     _soundPlayer = new SoundPlayer(audioPath);
-                    _soundPlayer.Play(); // Play asynchronously (non-blocking)
+                    _soundPlayer.Play();
                 }
                 else
                 {
-                    AddBotMessage("(Voice greeting file not found - continuing in text mode)");
+                    AddBotMessage("(Voice greeting file not found)");
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Audio error: {ex.Message}");
-                // Silently fail - audio is optional
+                AddBotMessage($"(Audio error: {ex.Message})");
             }
         }
 
@@ -78,33 +95,13 @@ namespace CybersecurityBotWPF
                 _currentUserName = newName;
                 _memory.UserName = _currentUserName;
 
-                // Play voice greeting when name is set
-                PlayVoiceGreeting();
-
-                // Add a slight delay before showing the text response so voice plays first
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromMilliseconds(1500);
-                timer.Tick += (s, ev) =>
-                {
-                    timer.Stop();
-                    AddBotMessage($"Nice to meet you, {_currentUserName}! I'm here to help you stay safe online. What would you like to know about cybersecurity?");
-                    AddQuickTopicSuggestions();
-                };
-                timer.Start();
+                AddBotMessage($"Nice to meet you, {_currentUserName}! I'm here to help you stay safe online. What would you like to know about cybersecurity?");
+                AddQuickTopicSuggestions();
             }
             else
             {
                 AddBotMessage("Please enter a valid name.");
             }
-        }
-
-        private void PlayVoiceButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Play voice greeting when button is clicked
-            PlayVoiceGreeting();
-
-            // Add feedback message
-            AddBotMessage("🔊 Playing greeting message...");
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
@@ -130,16 +127,10 @@ namespace CybersecurityBotWPF
             AddUserMessage(userMessage);
             MessageInputBox.Clear();
 
-            // Detect sentiment
             string sentiment = _sentimentService.DetectSentiment(userMessage);
-
-            // Store in memory
             _memory.AddToHistory(userMessage, true);
-
-            // Get response based on sentiment
             string botResponse = _responseService.GetResponse(userMessage, sentiment, _currentUserName, _memory);
 
-            // Add delay for realistic typing effect
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += (s, e) =>
@@ -153,71 +144,140 @@ namespace CybersecurityBotWPF
 
         private void AddUserMessage(string message)
         {
-            Border messageBorder = new Border
+            // Create a grid for proper icon and message alignment
+            Grid messageGrid = new Grid();
+            messageGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            messageGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+            // Icon column (fixed width with spacing)
+            Border iconBorder = new Border
             {
-                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E94560")),
-                CornerRadius = new CornerRadius(15),
-                Margin = new Thickness(50, 5, 10, 5),
-                Padding = new Thickness(15, 10, 15, 10)
+                Width = 40,
+                Height = 40,
+                CornerRadius = new CornerRadius(20),
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9B59B6")),
+                Margin = new Thickness(0, 0, 15, 0),
+                VerticalAlignment = VerticalAlignment.Top
             };
 
-            StackPanel stackPanel = new StackPanel { Orientation = Orientation.Horizontal };
+            TextBlock icon = new TextBlock
+            {
+                Text = "👤",
+                FontSize = 22,
+                Foreground = Brushes.White,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            iconBorder.Child = icon;
+
+            // Message column
+            Border messageBorder = new Border
+            {
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9B59B6")),
+                CornerRadius = new CornerRadius(15),
+                Padding = new Thickness(15, 10, 15, 10),
+                Margin = new Thickness(0, 0, 20, 5),
+                MaxWidth = 500,
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+
             TextBlock messageText = new TextBlock
             {
                 Text = message,
                 Foreground = Brushes.White,
                 FontSize = 14,
                 TextWrapping = TextWrapping.Wrap,
-                FontFamily = new FontFamily("Segoe UI"),
-                MaxWidth = 400
+                FontFamily = new FontFamily("Segoe UI")
             };
-            TextBlock icon = new TextBlock
+            messageBorder.Child = messageText;
+
+            // Add to grid
+            Grid.SetColumn(iconBorder, 0);
+            Grid.SetColumn(messageBorder, 1);
+            messageGrid.Children.Add(iconBorder);
+            messageGrid.Children.Add(messageBorder);
+
+            // Container border
+            Border container = new Border
             {
-                Text = " 👤",
-                FontSize = 20,
-                VerticalAlignment = VerticalAlignment.Top
+                Margin = new Thickness(10, 5, 50, 5),
+                Child = messageGrid
             };
 
-            stackPanel.Children.Add(messageText);
-            stackPanel.Children.Add(icon);
-            messageBorder.Child = stackPanel;
-
-            ChatMessagesPanel.Children.Add(messageBorder);
+            ChatMessagesPanel.Children.Add(container);
             ScrollToBottom();
         }
 
         private void AddBotMessage(string message)
         {
-            Border messageBorder = new Border
-            {
-                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2D2D44")),
-                CornerRadius = new CornerRadius(15),
-                Margin = new Thickness(10, 5, 50, 5),
-                Padding = new Thickness(15, 10, 15, 10)
-            };
+            // Remove any asterisks from the message
+            string cleanMessage = message.Replace("*", "");
 
-            StackPanel stackPanel = new StackPanel { Orientation = Orientation.Horizontal };
-            TextBlock icon = new TextBlock
+            // Create a grid for proper icon and message alignment
+            Grid messageGrid = new Grid();
+            messageGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            messageGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+            // Icon column (fixed width with spacing)
+            Border iconBorder = new Border
             {
-                Text = "🤖 ",
-                FontSize = 20,
+                Width = 40,
+                Height = 40,
+                CornerRadius = new CornerRadius(20),
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2C2C3E")),
+                BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9B59B6")),
+                BorderThickness = new Thickness(1),
+                Margin = new Thickness(0, 0, 15, 0),
                 VerticalAlignment = VerticalAlignment.Top
             };
-            TextBlock messageText = new TextBlock
+
+            TextBlock icon = new TextBlock
             {
-                Text = message,
-                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4ECDC4")),
-                FontSize = 14,
-                TextWrapping = TextWrapping.Wrap,
-                FontFamily = new FontFamily("Segoe UI"),
-                MaxWidth = 400
+                Text = "🤖",
+                FontSize = 22,
+                Foreground = Brushes.White,  // White icon
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            iconBorder.Child = icon;
+
+            // Message column
+            Border messageBorder = new Border
+            {
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2C2C3E")),
+                CornerRadius = new CornerRadius(15),
+                Padding = new Thickness(15, 10, 15, 10),
+                BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9B59B6")),
+                BorderThickness = new Thickness(1),
+                Margin = new Thickness(0, 0, 20, 5),
+                MaxWidth = 550,
+                HorizontalAlignment = HorizontalAlignment.Left
             };
 
-            stackPanel.Children.Add(icon);
-            stackPanel.Children.Add(messageText);
-            messageBorder.Child = stackPanel;
+            TextBlock messageText = new TextBlock
+            {
+                Text = cleanMessage,
+                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#D5B4E6")),
+                FontSize = 14,
+                TextWrapping = TextWrapping.Wrap,
+                FontFamily = new FontFamily("Segoe UI")
+            };
+            messageBorder.Child = messageText;
 
-            ChatMessagesPanel.Children.Add(messageBorder);
+            // Add to grid
+            Grid.SetColumn(iconBorder, 0);
+            Grid.SetColumn(messageBorder, 1);
+            messageGrid.Children.Add(iconBorder);
+            messageGrid.Children.Add(messageBorder);
+
+            // Container border
+            Border container = new Border
+            {
+                Margin = new Thickness(10, 5, 50, 5),
+                Child = messageGrid
+            };
+
+            ChatMessagesPanel.Children.Add(container);
             ScrollToBottom();
         }
 
@@ -230,11 +290,8 @@ namespace CybersecurityBotWPF
         {
             Button clickedButton = sender as Button;
             string topic = clickedButton.Content.ToString();
-
-            // Extract text after the emoji (or use full text if no emoji)
             int spaceIndex = topic.IndexOf(' ');
             string query = spaceIndex > 0 ? topic.Substring(spaceIndex + 1) : topic;
-
             MessageInputBox.Text = query;
             SendUserMessage();
         }
@@ -252,7 +309,6 @@ namespace CybersecurityBotWPF
             ChatScrollViewer.ScrollToBottom();
         }
 
-        // Clean up sound player when window closes
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);

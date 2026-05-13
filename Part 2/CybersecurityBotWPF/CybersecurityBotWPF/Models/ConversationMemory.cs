@@ -14,7 +14,6 @@ namespace CybersecurityBotWPF.Models
             if (isUser)
             {
                 _userQuestions.Add(message.ToLower());
-                // Keep only last 10 for memory efficiency
                 if (_userQuestions.Count > 10)
                     _userQuestions.RemoveAt(0);
             }
@@ -30,7 +29,6 @@ namespace CybersecurityBotWPF.Models
         {
             string lowerQuestion = question.ToLower();
 
-            // Check if similar question was asked before (simple keyword matching)
             foreach (string pastQuestion in _userQuestions)
             {
                 if (pastQuestion.Contains(lowerQuestion) || lowerQuestion.Contains(pastQuestion))

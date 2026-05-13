@@ -1,12 +1,225 @@
 ﻿<Window x:Class="CybersecurityBotWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CybersecurityBotWPF"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Cybersecurity Awareness Bot" 
+        Height="700" Width="900"
+        WindowStartupLocation="CenterScreen"
+        Background="#1A1A2E">
 
+    <Window.Resources>
+        <!-- Modern Color Palette -->
+        <SolidColorBrush x:Key="BotMessageBrush" Color="#4ECDC4"/>
+        <SolidColorBrush x:Key="UserMessageBrush" Color="#FF6B6B"/>
+        <SolidColorBrush x:Key="BackgroundBrush" Color="#1A1A2E"/>
+        <SolidColorBrush x:Key="InputBackgroundBrush" Color="#16213E"/>
+        <SolidColorBrush x:Key="SendButtonBrush" Color="#4ECDC4"/>
+        <SolidColorBrush x:Key="ClearButtonBrush" Color="#E94560"/>
+
+        <!-- Message Template -->
+        <DataTemplate x:Key="BotMessageTemplate">
+            <Border Background="#2D2D44" 
+                    CornerRadius="15" 
+                    Margin="10,5,50,5" 
+                    Padding="15,10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="🤖 " FontSize="20" VerticalAlignment="Top"/>
+                    <TextBlock Text="{Binding Message}" 
+                               Foreground="{StaticResource BotMessageBrush}"
+                               FontSize="14" 
+                               TextWrapping="Wrap"
+                               FontFamily="Segoe UI"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="UserMessageTemplate">
+            <Border Background="#E94560" 
+                    CornerRadius="15" 
+                    Margin="50,5,10,5" 
+                    Padding="15,10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Message}" 
+                               Foreground="White"
+                               FontSize="14" 
+                               TextWrapping="Wrap"
+                               FontFamily="Segoe UI"/>
+                    <TextBlock Text=" 👤" FontSize="20" VerticalAlignment="Top"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header with ASCII Art -->
+        <Border Grid.Row="0" Background="#0F3460" Padding="20" BorderBrush="#4ECDC4" BorderThickness="0,0,0,2">
+            <StackPanel>
+                <!-- ASCII Art Logo -->
+                <TextBlock x:Name="AsciiArt" 
+                           FontFamily="Consolas" 
+                           FontSize="10" 
+                           Foreground="#4ECDC4"
+                           TextAlignment="Center"
+                           Text="
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║                                                                  ║
+    ║    ██████╗██╗   ██╗██████╗ ███████╗██████╗     █████╗ ██╗    ██╗ ║
+    ║   ██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗   ██╔══██╗██║    ██║ ║
+    ║   ██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝   ███████║██║ █╗ ██║ ║
+    ║   ██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗   ██╔══██║██║███╗██║ ║
+    ║   ╚██████╗   ██║   ██████╔╝███████╗██║  ██║   ██║  ██║╚███╔███╔╝ ║
+    ║    ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝  ╚═╝ ╚══╝╚══╝  ║
+    ║                                                                  ║
+    ║               CYBERSECURITY AWARENESS BOT                        ║
+    ║                   Stay Safe Online!                              ║
+    ╚══════════════════════════════════════════════════════════════════╝"
+                           TextWrapping="Wrap"/>
+
+                <TextBlock Text="🔒 Your Digital Safety Partner 🔒" 
+                           FontSize="14" 
+                           Foreground="#4ECDC4"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- User Greeting Section -->
+        <Border Grid.Row="1" Background="#16213E" Margin="20,15,20,10" CornerRadius="10" Padding="15">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Welcome, " FontSize="16" Foreground="White" VerticalAlignment="Center"/>
+                <TextBox x:Name="UserNameBox" 
+                         Text="Guest" 
+                         Width="150" 
+                         Margin="5,0"
+                         Background="#0F3460"
+                         Foreground="White"
+                         BorderBrush="#4ECDC4"
+                         FontSize="14"
+                         Padding="8,5"/>
+                <Button x:Name="SetNameButton" 
+                        Content="Set Name" 
+                        Background="#4ECDC4" 
+                        Foreground="#1A1A2E"
+                        BorderThickness="0"
+                        Padding="15,8"
+                        Margin="5,0"
+                        Cursor="Hand"
+                        FontWeight="Bold"
+                        Click="SetNameButton_Click"/>
+                <Button x:Name="PlayVoiceButton" 
+                        Content="🔊 Play Greeting" 
+                        Background="#E94560" 
+                        Foreground="White"
+                        BorderThickness="0"
+                        Padding="15,8"
+                        Margin="5,0"
+                        Cursor="Hand"
+                        Click="PlayVoiceButton_Click"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Chat Messages Area -->
+        <ScrollViewer Grid.Row="2" 
+                      x:Name="ChatScrollViewer"
+                      Background="#1A1A2E"
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="ChatMessagesPanel" 
+                        Margin="20,10,20,10"
+                        Background="#1A1A2E"/>
+        </ScrollViewer>
+
+        <!-- Quick Topic Buttons -->
+        <Border Grid.Row="3" Background="#16213E" Padding="15" Margin="20,5,20,5" CornerRadius="10">
+            <WrapPanel HorizontalAlignment="Center">
+                <Button Content="🔐 Password Safety" 
+                        Style="{StaticResource QuickButtonStyle}"
+                        Click="QuickTopic_Click" Margin="5"/>
+                <Button Content="🎣 Phishing Scams" 
+                        Style="{StaticResource QuickButtonStyle}"
+                        Click="QuickTopic_Click" Margin="5"/>
+                <Button Content="🌐 Safe Browsing" 
+                        Style="{StaticResource QuickButtonStyle}"
+                        Click="QuickTopic_Click" Margin="5"/>
+                <Button Content="🛡️ Malware" 
+                        Style="{StaticResource QuickButtonStyle}"
+                        Click="QuickTopic_Click" Margin="5"/>
+                <Button Content="🔑 MFA/2FA" 
+                        Style="{StaticResource QuickButtonStyle}"
+                        Click="QuickTopic_Click" Margin="5"/>
+                <Button Content="💾 Backups" 
+                        Style="{StaticResource QuickButtonStyle}"
+                        Click="QuickTopic_Click" Margin="5"/>
+                <Button Content="🧠 Social Engineering" 
+                        Style="{StaticResource QuickButtonStyle}"
+                        Click="QuickTopic_Click" Margin="5"/>
+                <Button Content="🆔 Identity Theft" 
+                        Style="{StaticResource QuickButtonStyle}"
+                        Click="QuickTopic_Click" Margin="5"/>
+            </WrapPanel>
+        </Border>
+
+        <!-- Message Input Area -->
+        <Border Grid.Row="4" Background="#16213E" Padding="15" Margin="20,5,20,20" CornerRadius="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="MessageInputBox" 
+                         Grid.Column="0"
+                         Background="#0F3460"
+                         Foreground="White"
+                         BorderBrush="#4ECDC4"
+                         FontSize="14"
+                         Padding="12,10"
+                         VerticalContentAlignment="Center"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         Height="Auto"
+                         MinHeight="40"
+                         KeyDown="MessageInputBox_KeyDown"/>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10,0,0,0">
+                    <Button x:Name="SendButton" 
+                            Content="📤 Send" 
+                            Background="#4ECDC4" 
+                            Foreground="#1A1A2E"
+                            BorderThickness="0"
+                            Padding="20,10"
+                            Margin="5,0"
+                            Cursor="Hand"
+                            FontWeight="Bold"
+                            Click="SendButton_Click"/>
+                    <Button x:Name="ClearButton" 
+                            Content="🗑️ Clear" 
+                            Background="#E94560" 
+                            Foreground="White"
+                            BorderThickness="0"
+                            Padding="20,10"
+                            Margin="5,0"
+                            Cursor="Hand"
+                            Click="ClearButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                     From="0" To="1" Duration="0:0:1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
 </Window>

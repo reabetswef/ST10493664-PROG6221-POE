@@ -1,35 +1,38 @@
 # ST10493664-PROG6221-POE
-- Cybersecurity Awareness Chatbot (POE Part 1)
+## Cybersecurity Awareness Chatbot (POE Part 2 - WPF GUI Application)
 
+---
 
 ## Overview
-The Cybersecurity Awareness Chatbot is a .NET 10.0 C# console application developed in Visual Studio 2026. It is designed to educate users on basic cybersecurity principles through an interactive command-line chatbot experience.
+The Cybersecurity Awareness Chatbot is a .NET 10.0 WPF (Windows Presentation Foundation) desktop application developed in Visual Studio 2026. It is designed to educate users on basic cybersecurity principles through an engaging graphical user interface with voice interaction, sentiment detection, and conversational memory.
 
-The chatbot provides guidance on topics such as password security, phishing scams, safe browsing practices, malware protection, social engineering, data privacy, multi-factor authentication, and general online safety awareness.
+The chatbot provides guidance on topics such as password security, phishing scams, safe browsing practices, malware protection, social engineering, data privacy, multi-factor authentication, secure backups, identity theft prevention, and general online safety awareness. The application has been upgraded from a console application to a modern WPF interface with enhanced features for Part 2 of the POE.
 
+---
 
 ## Features
 ### Core Functionality
-- **Interactive console-based chatbot interface** with natural dialogue flow
-- **Username personalization** and session-based interaction
-- **Voice greeting** on startup (WAV audio playback)
-- **Typing animation effect** for bot responses to simulate conversation
+- **Modern WPF graphical user interface** with custom color scheme (White & Purple theme)
+- **Username personalization** with persistent session memory
+- **Voice greeting** on demand (WAV audio playback via button click)
+- **Typing effect simulation** for bot responses
 - **Input validation** with graceful error handling
 - **Exit command** to safely end the session
+- **Quick topic buttons** for easy access to cybersecurity topics
 
 ### Visual Enhancements
-- **ASCII art logo** displayed at startup
-- **Colored text interface**:
-  - Bot messages: Green
-  - User messages: Yellow
-  - ASCII art: Red
-  - Section headers: Magenta
-  - Dividers: Dark Gray
-  - Error messages: Red
-- **Decorative borders and dividers** for structured UI
-- **Section headers** to organize conversation flow
+- **ASCII art logo** displayed in header using fixed-width font (Consolas)
+- **Modern color scheme**:
+  - Bot messages: Light Purple (#D5B4E6) on dark background with purple border
+  - User messages: White text on Purple (#9B59B6) background
+  - ASCII art: Light Purple (#D5B4E6)
+  - Section headers: Purple (#9B59B6)
+  - Send button: Purple (#9B59B6)
+  - Clear button: Red (#E74C3C)
+- **Icon-based message layout** with dedicated icon column (🤖 for bot, 👤 for user)
+- **Rounded corners and modern borders** for professional appearance
 
-### Cybersecurity Topics Covered
+### Cybersecurity Topics Covered (10+ Topics)
 The chatbot responds to questions about:
 - **Password safety** - Strong passwords and passphrases
 - **Phishing scams** - Email safety and suspicious links
@@ -43,57 +46,103 @@ The chatbot responds to questions about:
 - **Ransomware** - Protection and recovery
 - **Software updates** - Importance of patching
 
+### Enhanced Features (Part 2)
+#### 1. Keyword Recognition
+- Recognizes 10+ cybersecurity keywords using dictionary-based categorization
+- Provides immediate, relevant responses without requiring rephrasing
+- Categories include password, phishing, privacy, browsing, malware, social engineering, MFA, backup, identity, and updates
+
+#### 2. Random Responses
+- Multiple response variations (4-6 per topic) using List<string> collections
+- Random selection creates varied, engaging conversations
+- Prevents repetitive answers for repeated questions
+
+#### 3. Conversation Flow
+- Handles follow-up questions: "tell me more", "another tip", "explain more"
+- Maintains context across conversation turns
+- Provides detailed explanations on demand
+
+#### 4. Memory and Recall
+- Stores user's favorite cybersecurity topic
+- Tracks number of tips given during session
+- Recalls user preferences with "what do you remember about me"
+- Personalizes greetings based on past interests
+
+#### 5. Sentiment Detection
+- Detects 5 emotional states: worried, frustrated, curious, excited, sad
+- Provides empathetic responses with encouraging follow-ups
+- Adjusts response tone based on user's mood
+- Gives immediate tips without requiring additional prompts
+
+#### 6. Code Optimisation
+- Dictionaries for keyword categorization
+- Lists/arrays for random response storage
+- Random class for varied output selection
+- Clean OOP structure with 5 specialized classes
+- Ready for further expansion in Part 3
+
+---
 
 ## Technologies Used
 - **C# (.NET 10.0)** - Core programming language
-- **Console Application (CLI)** - User interface platform
+- **WPF (Windows Presentation Foundation)** - GUI framework
+- **XAML** - User interface markup language
 - **Visual Studio 2026** - Development environment
 - **System.Media** - Audio playback for voice greeting
 - **Object-Oriented Programming (OOP)** - Code structure with multiple classes
+- **Generic Collections** - Dictionaries and Lists for data management
 
+---
 
 ## Project Structure
 The application is organized into the following classes for clean code separation:
 
 | Class | Responsibility |
 |-------|----------------|
-| **Program.cs** | Entry point of the application. Initializes all services and starts the chatbot session. |
-| **VoiceService.cs** | Handles playing startup greeting audio (WAV file) with safe fallback if audio file is missing. |
-| **AsciiArt.cs** | Responsible for ASCII logo display, section headers, decorative borders, and visual enhancements. |
-| **InteractionService.cs** | Manages user interaction including name collection, chat loop, typing animation effect, color formatting, and conversation flow control. |
-| **ResponseService.cs** | Generates responses using keyword matching with if-else statements for cybersecurity topics. Handles input validation and exit commands. |
+| **MainWindow.xaml** | GUI layout with modern white/purple theme, ASCII art header, chat message panel, quick topic buttons, and input area |
+| **MainWindow.xaml.cs** | Code-behind handling UI events, message display, voice playback coordination, and chat flow management |
+| **ResponseService.cs** | Manages keyword recognition, random response selection, follow-up handling, and topic-based replies using dictionaries and lists |
+| **SentimentService.cs** | Detects user emotions (worried, frustrated, curious, excited, sad) and generates empathetic response prefixes |
+| **ConversationMemory.cs** | Stores user preferences (favorite topic, security concerns), tracks conversation history, and provides personalized recall |
+| **VoiceService.cs** | Handles WAV audio playback on demand with safe fallback if file is missing |
 
+---
 
 ## How It Works
 1. **Application Startup**
-   - Console title is set to "Cybersecurity Awareness Bot"
-   - AsciiArt displays ASCII art logo in cyan
-   - VoiceService plays voice greeting (if `greeting.wav` exists)
+   - Window loads with purple/white theme
+   - ASCII art logo displays in fixed-width font
+   - Welcome message appears asking for user's name
 
 2. **User Greeting**
-   - InteractionService asks for user's name with typing effect
-   - Input validation ensures name is not empty
-   - Name is capitalized for personalization
+   - User enters name and clicks "Set Name"
+   - Bot personalizes all future responses
+   - Voice greeting available via "Play Greeting" button
 
 3. **Main Chat Loop**
-   - InteractionService displays available topics
-   - User types questions in natural language
-   - ResponseService generates relevant cybersecurity information
-   - Conversation continues until user types `exit`
+   - User types questions or clicks quick topic buttons
+   - Sentiment analysis detects user's emotional state
+   - Keyword recognition identifies cybersecurity topic
+   - Random response selected from appropriate list
+   - Response displayed with empathetic prefix if needed
+   - Follow-ups handled with "tell me more" or "another tip"
 
 4. **Response System**
-   - Uses simple if-else statements for keyword matching
-   - Provides specific responses for cybersecurity topics
-   - Returns default response for unrecognized queries
-   - Handles empty input gracefully
+   - Uses Dictionary<string, List<string>> for keyword categorization
+   - 10+ List<string> collections for random response storage
+   - Random class ensures varied, non-repetitive answers
+   - Memory system stores and recalls user preferences
 
 5. **Visual Feedback**
-   - InteractionService provides typing animation for conversational feel
-   - Color coding distinguishes bot (green) from user (magenta)
-   - AsciiArt provides dividers and section headers to organize the interface
+   - Icon-based layout (🤖 bot, 👤 user) with dedicated columns
+   - Rounded message bubbles with color coding
+   - Auto-scrolling chat panel
+   - Typing effect simulation for realism
 
+---
 
 ## Example Commands
+
 Users can type natural language inputs such as:
 - `password safety` or `how to create strong password`
 - `phishing` or `what is phishing`
@@ -108,30 +157,23 @@ Users can type natural language inputs such as:
 - `how are you`
 - `purpose` or `what is your purpose`
 - `what can i ask`
-
+- `tell me more` (follow-up after a tip)
+- `another tip` (get another random tip on same topic)
+- `what do you remember about me` (recall stored preferences)
+- `I'm interested in privacy` (store favorite topic)
 
 ### To exit the application:
-- exit
+- Close the window or type `goodbye` / `bye`
 
+---
 
 ## Requirements
 - **.NET 10.0 SDK** or later
-- **Windows OS** (required for System.Media audio playback)
+- **Windows OS** (required for WPF and System.Media audio playback)
 - **Visual Studio 2026** recommended for development
-- **greeting.wav** audio file placed in the output directory (optional)
+- **greeting.wav** audio file placed in the `Assets` folder (optional)
 
-
-## Setup Instructions
-1. **Clone the repository**
-2. **Open the project**
-- Open Visual Studio 2026
-- Open the solution file (`.sln`)
-3. **Add audio file (optional)**
-- Place `greeting.wav` in the `bin/Debug/net10.0/` folder
-- Or set file to "Copy to Output Directory" in properties
-4. **Build and run**
-- Press `F5` to build and run the application
-
+---
 
 ## GitHub Requirements (POE Submission)
 - ✅ Minimum of 6 meaningful commits
@@ -140,18 +182,22 @@ Users can type natural language inputs such as:
 - ✅ Screenshot of successful CI run in README
 - ✅ All source code and multimedia files included
 
+---
 
 ## Notes
-- The chatbot uses simple keyword matching with if-else statements for responses (no dictionaries for simplicity)
+- The chatbot uses dictionary-based keyword matching with list collections for random responses
 - Audio playback is optional and will not crash the program if the file is missing
-- Typing effect can be adjusted by changing `TypingDelayMs` constant in `InteractionService.cs`
-- Color scheme can be customized by changing `ConsoleColor` values
+- Sentiment detection enhances user experience with empathetic responses
+- Memory system stores preferences within the current session
+- Color scheme uses White (#FFFFFF) and Purple (#9B59B6) as primary colors
 - Designed for educational purposes as part of a programming POE assignment
 - All code follows OOP principles with clear separation of concerns
+- Code is optimised for further expansion in Part 3
 
+---
 
 ## Author
 - **Full Name:** Reabetswe Tebogo Fafudi
 - **Student ID:** ST10493664
 - **Module:** PROG6221
-- **Project:** POE Part 1 – Cybersecurity Awareness Chatbot
+- **Project:** POE Part 2 – Cybersecurity Awareness Chatbot (WPF GUI Application)

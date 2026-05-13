@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 2\\cybersecuritybotwpf\\cybersecuritybotwpf\\models\\conversationmemory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|solutionrelative:cybersecuritybotwpf\\models\\conversationmemory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 2\\cybersecuritybotwpf\\cybersecuritybotwpf\\services\\sentimentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|solutionrelative:cybersecuritybotwpf\\services\\sentimentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 2\\cybersecuritybotwpf\\cybersecuritybotwpf\\services\\responseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|solutionrelative:cybersecuritybotwpf\\services\\responseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 2\\cybersecuritybotwpf\\cybersecuritybotwpf\\services\\voiceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|solutionrelative:cybersecuritybotwpf\\services\\voiceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 2\\cybersecuritybotwpf\\cybersecuritybotwpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|solutionrelative:cybersecuritybotwpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -23,6 +39,58 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ConversationMemory.cs",
+              "DocumentMoniker": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\Models\\ConversationMemory.cs",
+              "RelativeDocumentMoniker": "CybersecurityBotWPF\\Models\\ConversationMemory.cs",
+              "ToolTip": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\Models\\ConversationMemory.cs",
+              "RelativeToolTip": "CybersecurityBotWPF\\Models\\ConversationMemory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T11:35:51.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SentimentService.cs",
+              "DocumentMoniker": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\Services\\SentimentService.cs",
+              "RelativeDocumentMoniker": "CybersecurityBotWPF\\Services\\SentimentService.cs",
+              "ToolTip": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\Services\\SentimentService.cs",
+              "RelativeToolTip": "CybersecurityBotWPF\\Services\\SentimentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T11:34:40.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ResponseService.cs",
+              "DocumentMoniker": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\Services\\ResponseService.cs",
+              "RelativeDocumentMoniker": "CybersecurityBotWPF\\Services\\ResponseService.cs",
+              "ToolTip": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\Services\\ResponseService.cs",
+              "RelativeToolTip": "CybersecurityBotWPF\\Services\\ResponseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T11:34:31.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "VoiceService.cs",
+              "DocumentMoniker": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\Services\\VoiceService.cs",
+              "RelativeDocumentMoniker": "CybersecurityBotWPF\\Services\\VoiceService.cs",
+              "ToolTip": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\Services\\VoiceService.cs",
+              "RelativeToolTip": "CybersecurityBotWPF\\Services\\VoiceService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T11:34:11.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\MainWindow.xaml",
               "RelativeDocumentMoniker": "CybersecurityBotWPF\\MainWindow.xaml",
@@ -34,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "CybersecurityBotWPF\\MainWindow.xaml.cs",
@@ -42,8 +110,7 @@
               "RelativeToolTip": "CybersecurityBotWPF\\MainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T11:29:30.153Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-13T11:29:30.153Z"
             }
           ]
         }

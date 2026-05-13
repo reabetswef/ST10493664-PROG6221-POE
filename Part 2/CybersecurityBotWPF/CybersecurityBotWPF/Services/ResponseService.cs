@@ -8,6 +8,7 @@ namespace CybersecurityBotWPF.Services
     {
         private Dictionary<string, List<string>> _keywordCategories;
         private Random _random;
+        private SentimentService _sentimentService;
 
         // Track last topic discussed for follow-up questions
         private string _lastTopic = "";
@@ -33,6 +34,7 @@ namespace CybersecurityBotWPF.Services
         public ResponseService()
         {
             _random = new Random();
+            _sentimentService = new SentimentService();
             InitializeKeywordCategories();
             InitializeRandomResponses();
             InitializeDetailedExplanations();
@@ -71,7 +73,6 @@ namespace CybersecurityBotWPF.Services
 
         private void InitializeRandomResponses()
         {
-            // Password tips (5 variations)
             _passwordTips = new List<string>
             {
                 "🔐 Create passwords that are at least 12 characters long. The longer, the stronger! Mix uppercase, lowercase, numbers, and symbols.",
@@ -81,7 +82,6 @@ namespace CybersecurityBotWPF.Services
                 "🔐 Use a password manager! It generates and stores complex passwords for you, so you only need to remember one master password."
             };
 
-            // Phishing tips (6 variations)
             _phishingTips = new List<string>
             {
                 "🎣 Be cautious of emails asking for personal information. Scammers often disguise themselves as trusted organisations like your bank or Microsoft.",
@@ -92,7 +92,6 @@ namespace CybersecurityBotWPF.Services
                 "🎣 Remember: No legitimate company will ever ask for your password, OTP, or credit card details via email. Never share this information!"
             };
 
-            // Privacy tips (5 variations)
             _privacyTips = new List<string>
             {
                 "🔒 Review your social media privacy settings regularly. Make sure only friends can see your personal posts and information.",
@@ -102,7 +101,6 @@ namespace CybersecurityBotWPF.Services
                 "🔒 Limit app permissions on your phone. Does a flashlight app really need access to your contacts and location?"
             };
 
-            // Safe browsing tips (5 variations)
             _browsingTips = new List<string>
             {
                 "🌐 Always look for HTTPS and the padlock icon in the address bar before entering any personal information or making payments online.",
@@ -112,7 +110,6 @@ namespace CybersecurityBotWPF.Services
                 "🌐 Clear your browsing history, cache, and cookies regularly. This removes tracking data and reduces your digital footprint."
             };
 
-            // Malware tips (5 variations)
             _malwareTips = new List<string>
             {
                 "🛡️ Install reputable antivirus software and keep it updated. Run weekly scans to detect and remove threats early.",
@@ -122,7 +119,6 @@ namespace CybersecurityBotWPF.Services
                 "🛡️ Don't click on pop-up ads claiming your computer is infected. These are usually scams trying to trick you into downloading fake antivirus software."
             };
 
-            // Social engineering tips (5 variations)
             _socialTips = new List<string>
             {
                 "🧠 Never give out passwords or OTPs over the phone. Legitimate companies will never ask for this information.",
@@ -132,7 +128,6 @@ namespace CybersecurityBotWPF.Services
                 "🧠 Trust your instincts! If something feels wrong or too good to be true, it probably is. Take a moment to think before acting."
             };
 
-            // MFA tips (5 variations)
             _mfaTips = new List<string>
             {
                 "🔑 Enable 2FA on every account that offers it! It's the single most effective way to protect your accounts from unauthorised access.",
@@ -142,7 +137,6 @@ namespace CybersecurityBotWPF.Services
                 "🔑 Even if hackers steal your password, they can't access your account without your second factor. That's why MFA is so powerful!"
             };
 
-            // Backup tips (5 variations)
             _backupTips = new List<string>
             {
                 "💾 Follow the 3-2-1 backup rule: 3 copies of your data, on 2 different media types, with 1 copy stored off-site.",
@@ -152,7 +146,6 @@ namespace CybersecurityBotWPF.Services
                 "💾 Store important documents, photos, and work files in at least two different places - like OneDrive AND an external drive."
             };
 
-            // Identity theft tips (5 variations)
             _identityTips = new List<string>
             {
                 "🆔 Monitor your bank and credit card statements monthly. Report any suspicious transactions immediately.",
@@ -162,7 +155,6 @@ namespace CybersecurityBotWPF.Services
                 "🆔 Be careful what you post on social media. Your full birthdate, address, and vacation plans can be used by identity thieves."
             };
 
-            // Update tips (4 variations)
             _updateTips = new List<string>
             {
                 "🔄 Enable automatic updates on your phone, computer, and apps. Updates contain critical security patches!",
@@ -171,7 +163,6 @@ namespace CybersecurityBotWPF.Services
                 "🔄 Set aside time each week to check for and install updates. Make it part of your cybersecurity routine!"
             };
 
-            // Greeting variations (4 variations)
             _greetingResponses = new List<string>
             {
                 "Hello there! 👋 Welcome to the Cybersecurity Awareness Bot. How can I help you stay safe online today?",
@@ -180,7 +171,6 @@ namespace CybersecurityBotWPF.Services
                 "Hey there! 🛡️ Let's talk about cybersecurity. What topic interests you today?"
             };
 
-            // Farewell variations (4 variations)
             _farewellResponses = new List<string>
             {
                 "Stay safe out there! Remember to use strong passwords and never click suspicious links. Goodbye! 👋",
@@ -199,19 +189,22 @@ namespace CybersecurityBotWPF.Services
 
             string input = userInput.ToLower();
 
-            string sentimentPrefix = "";
-            if (sentiment == "negative")
+            // Get empathetic prefix based on sentiment
+            string empatheticPrefix = _sentimentService.GetEmpatheticPrefix(sentiment);
+
+            // Get the cybersecurity response
+            string response = RecognizeKeywords(input, userName, memory, sentiment);
+
+            // Combine empathetic prefix with response
+            string fullResponse = empatheticPrefix + response;
+
+            // Add encouraging follow-up for non-neutral sentiments
+            if (sentiment != "neutral")
             {
-                sentimentPrefix = "I'm sorry you're feeling that way. ";
-            }
-            else if (sentiment == "excited")
-            {
-                sentimentPrefix = "That's great energy! ";
+                fullResponse += _sentimentService.GetEncouragingFollowUp(sentiment);
             }
 
-            string response = RecognizeKeywords(input, userName, memory);
-
-            return sentimentPrefix + response;
+            return fullResponse;
         }
 
         private string GetRandomResponse(List<string> responses)
@@ -220,16 +213,95 @@ namespace CybersecurityBotWPF.Services
             return responses[index];
         }
 
-        private string RecognizeKeywords(string input, string userName, ConversationMemory memory)
+        private string RecognizeKeywords(string input, string userName, ConversationMemory memory, string sentiment = "neutral")
         {
             bool askedBefore = memory.HasAskedBefore(input);
             string memoryPrefix = askedBefore ? "As I mentioned earlier, " : "";
 
-            // Follow-up: tell me more
-            if (input.Contains("tell me more") || input.Contains("explain more") || input.Contains("more details") || input.Contains("elaborate"))
+            // ============ SENTIMENT-BASED SPECIAL RESPONSES ============
+            // If user is worried about scams/phishing
+            if (sentiment == "worried" && (input.Contains("scam") || input.Contains("phishing") || input.Contains("fraud")))
+            {
+                _lastTopic = "phishing";
+                memory.AddDiscussedTopic("phishing");
+                memory.TipsGiven++;
+                string tip = GetRandomResponse(_phishingTips);
+                return $"You're right to be cautious about online scams. The good news is that by learning about them, you're already ahead of most people!\n\n{tip}";
+            }
+
+            // If user is worried about being hacked
+            if (sentiment == "worried" && (input.Contains("hack") || input.Contains("hacker") || input.Contains("compromised")))
+            {
+                _lastTopic = "password";
+                memory.AddDiscussedTopic("password");
+                memory.TipsGiven++;
+                string tip = GetRandomResponse(_passwordTips);
+                return $"Being concerned about hackers is completely valid. The best defense is good habits, and I'm here to help you build them!\n\n{tip}";
+            }
+
+            // If user is frustrated
+            if (sentiment == "frustrated")
+            {
+                return $"I know cybersecurity can feel like a lot to handle. Let me give you one simple, actionable tip that makes a big difference:\n\n" +
+                       $"{GetRandomResponse(_passwordTips)}";
+            }
+
+            // If user is curious
+            if (sentiment == "curious")
+            {
+                // Will use the regular response but with curious prefix already added
+            }
+
+            // ============ MEMORY: Store user preferences ============
+            if (input.Contains("i'm interested in") || input.Contains("interested in") || input.Contains("i like"))
+            {
+                if (input.Contains("password") || input.Contains("passphrase"))
+                {
+                    memory.FavoriteTopic = "password safety";
+                    memory.AddDiscussedTopic("password");
+                    return $"Great, {userName}! I'll remember that you're interested in password safety. 🔐\n\n" +
+                           $"{GetRandomResponse(_passwordTips)}\n\n💡 I'll keep this in mind for our future conversations!";
+                }
+                else if (input.Contains("phishing") || input.Contains("scam"))
+                {
+                    memory.FavoriteTopic = "phishing awareness";
+                    memory.AddDiscussedTopic("phishing");
+                    return $"Awesome, {userName}! I'll remember that you're interested in phishing awareness. 🎣\n\n" +
+                           $"{GetRandomResponse(_phishingTips)}\n\n💡 I'll use this to personalise our future conversations!";
+                }
+                else if (input.Contains("privacy") || input.Contains("private"))
+                {
+                    memory.FavoriteTopic = "data privacy";
+                    memory.AddDiscussedTopic("privacy");
+                    return $"Excellent choice, {userName}! I'll remember that you're interested in data privacy. 🔒\n\n" +
+                           $"{GetRandomResponse(_privacyTips)}\n\n💡 I'll tailor more privacy tips for you going forward!";
+                }
+            }
+
+            // ============ MEMORY: Recall stored preferences ============
+            if (input.Contains("what do you remember") || input.Contains("remember about me"))
+            {
+                string response = $"I remember quite a bit about you, {userName}! 🧠\n\n";
+
+                if (!string.IsNullOrEmpty(memory.FavoriteTopic))
+                {
+                    response += $"• You're interested in {memory.FavoriteTopic} 🔐\n";
+                }
+                if (memory.TipsGiven > 0)
+                {
+                    response += $"• I've shared {memory.TipsGiven} cybersecurity tips with you so far 📚\n";
+                }
+
+                response += $"\nI use this information to give you the most relevant cybersecurity advice!";
+                return response;
+            }
+
+            // ============ FOLLOW-UP QUESTIONS ============
+            if (input.Contains("tell me more") || input.Contains("explain more") || input.Contains("more details"))
             {
                 if (!string.IsNullOrEmpty(_lastTopic) && _detailedExplanations.ContainsKey(_lastTopic))
                 {
+                    memory.TipsGiven++;
                     return _detailedExplanations[_lastTopic];
                 }
                 else
@@ -238,11 +310,11 @@ namespace CybersecurityBotWPF.Services
                 }
             }
 
-            // Follow-up: another tip
-            if (input.Contains("another tip") || input.Contains("give me another") || input.Contains("more tips") || input.Contains("another one"))
+            if (input.Contains("another tip") || input.Contains("give me another") || input.Contains("more tips"))
             {
                 if (!string.IsNullOrEmpty(_lastTopic))
                 {
+                    memory.TipsGiven++;
                     switch (_lastTopic)
                     {
                         case "password":
@@ -266,7 +338,7 @@ namespace CybersecurityBotWPF.Services
                         case "update":
                             return GetRandomResponse(_updateTips);
                         default:
-                            return "Sure! What topic would you like another tip about? Try asking for password tips, phishing tips, or privacy tips!";
+                            return "Sure! What topic would you like another tip about?";
                     }
                 }
                 else
@@ -275,90 +347,89 @@ namespace CybersecurityBotWPF.Services
                 }
             }
 
-            // Handle confusion
-            if (input.Contains("i don't understand") || input.Contains("confused") || input.Contains("unclear"))
-            {
-                return "I'm sorry you're confused! Let me try to help. Could you tell me which topic you'd like me to explain in simpler terms? Try asking about passwords, phishing, or privacy, and I'll give you an easy-to-understand explanation.";
-            }
-
-            // Password Safety
+            // ============ TOPIC RESPONSES (with immediate tips) ============
             if (ContainsKeyword(input, "password"))
             {
                 _lastTopic = "password";
-                _lastDetailedResponse = GetRandomResponse(_passwordTips);
-                return memoryPrefix + _lastDetailedResponse + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more password advice!";
+                memory.AddDiscussedTopic("password");
+                memory.TipsGiven++;
+                string response = GetRandomResponse(_passwordTips);
+                return response + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more password advice!";
             }
 
-            // Phishing
             if (ContainsKeyword(input, "phishing"))
             {
                 _lastTopic = "phishing";
-                _lastDetailedResponse = GetRandomResponse(_phishingTips);
-                return memoryPrefix + _lastDetailedResponse + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more phishing advice!";
+                memory.AddDiscussedTopic("phishing");
+                memory.TipsGiven++;
+                string response = GetRandomResponse(_phishingTips);
+                return response + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more phishing advice!";
             }
 
-            // Privacy
             if (ContainsKeyword(input, "privacy"))
             {
                 _lastTopic = "privacy";
-                _lastDetailedResponse = GetRandomResponse(_privacyTips);
-                return memoryPrefix + _lastDetailedResponse + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more privacy advice!";
+                memory.AddDiscussedTopic("privacy");
+                memory.TipsGiven++;
+                string response = GetRandomResponse(_privacyTips);
+                return response + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more privacy advice!";
             }
 
-            // Browsing
             if (ContainsKeyword(input, "browsing"))
             {
                 _lastTopic = "browsing";
-                _lastDetailedResponse = GetRandomResponse(_browsingTips);
-                return memoryPrefix + _lastDetailedResponse + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more browsing advice!";
+                memory.AddDiscussedTopic("browsing");
+                memory.TipsGiven++;
+                return GetRandomResponse(_browsingTips) + "\n\n💡 Type 'tell me more' or 'another tip' for more!";
             }
 
-            // Malware
             if (ContainsKeyword(input, "malware"))
             {
                 _lastTopic = "malware";
-                _lastDetailedResponse = GetRandomResponse(_malwareTips);
-                return memoryPrefix + _lastDetailedResponse + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more malware advice!";
+                memory.AddDiscussedTopic("malware");
+                memory.TipsGiven++;
+                return GetRandomResponse(_malwareTips) + "\n\n💡 Type 'tell me more' or 'another tip' for more!";
             }
 
-            // Social Engineering
             if (ContainsKeyword(input, "social"))
             {
                 _lastTopic = "social";
-                _lastDetailedResponse = GetRandomResponse(_socialTips);
-                return memoryPrefix + _lastDetailedResponse + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more social engineering advice!";
+                memory.AddDiscussedTopic("social");
+                memory.TipsGiven++;
+                return GetRandomResponse(_socialTips) + "\n\n💡 Type 'tell me more' or 'another tip' for more!";
             }
 
-            // MFA
             if (ContainsKeyword(input, "mfa"))
             {
                 _lastTopic = "mfa";
-                _lastDetailedResponse = GetRandomResponse(_mfaTips);
-                return memoryPrefix + _lastDetailedResponse + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more MFA advice!";
+                memory.AddDiscussedTopic("mfa");
+                memory.TipsGiven++;
+                string response = GetRandomResponse(_mfaTips);
+                return response + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more MFA advice!";
             }
 
-            // Backup
             if (ContainsKeyword(input, "backup"))
             {
                 _lastTopic = "backup";
-                _lastDetailedResponse = GetRandomResponse(_backupTips);
-                return memoryPrefix + _lastDetailedResponse + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more backup advice!";
+                memory.AddDiscussedTopic("backup");
+                memory.TipsGiven++;
+                return GetRandomResponse(_backupTips) + "\n\n💡 Type 'tell me more' or 'another tip' for more!";
             }
 
-            // Identity
             if (ContainsKeyword(input, "identity"))
             {
                 _lastTopic = "identity";
-                _lastDetailedResponse = GetRandomResponse(_identityTips);
-                return memoryPrefix + _lastDetailedResponse + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more identity theft advice!";
+                memory.AddDiscussedTopic("identity");
+                memory.TipsGiven++;
+                return GetRandomResponse(_identityTips) + "\n\n💡 Type 'tell me more' or 'another tip' for more!";
             }
 
-            // Update
             if (ContainsKeyword(input, "update"))
             {
                 _lastTopic = "update";
-                _lastDetailedResponse = GetRandomResponse(_updateTips);
-                return memoryPrefix + _lastDetailedResponse + "\n\n💡 Type 'tell me more' for a detailed explanation or 'another tip' for more update advice!";
+                memory.AddDiscussedTopic("update");
+                memory.TipsGiven++;
+                return GetRandomResponse(_updateTips) + "\n\n💡 Type 'tell me more' or 'another tip' for more!";
             }
 
             // How are you
@@ -370,19 +441,29 @@ namespace CybersecurityBotWPF.Services
             // Purpose
             if (input.Contains("what is your purpose") || input.Contains("what do you do") || input.Contains("what can you do"))
             {
-                return $"My purpose is to educate and empower people like you, {userName}, to stay safe online! I can help with passwords, phishing, privacy, safe browsing, malware, MFA, backups, identity theft, and more.\n\n💡 After I give you a tip, you can ask me 'tell me more' or 'another tip' to continue the conversation!";
+                string purposeResponse = $"My purpose is to educate and empower people like you, {userName}, to stay safe online! ";
+                if (!string.IsNullOrEmpty(memory.FavoriteTopic))
+                {
+                    purposeResponse += $"Since you're interested in {memory.FavoriteTopic}, I'll focus on giving you the best tips in that area. ";
+                }
+                purposeResponse += "\n\nI can help with passwords, phishing, privacy, safe browsing, malware, MFA, backups, identity theft, and more.\n\n💡 Just tell me what you're worried or curious about, and I'll help immediately!";
+                return purposeResponse;
             }
 
             // Thanks
             if (input.Contains("thank you") || input.Contains("thanks") || input.Contains("thank"))
             {
-                return $"You're very welcome, {userName}! 😊 I'm glad I could help. Stay safe online!";
+                return $"You're very welcome, {userName}! 😊 Stay safe online!";
             }
 
             // Hello/Hi
             if (input.Contains("hello") || input.Contains("hi") || input.Contains("hey"))
             {
                 _lastTopic = "";
+                if (!string.IsNullOrEmpty(memory.FavoriteTopic))
+                {
+                    return memory.GetPersonalizedGreeting();
+                }
                 return GetRandomResponse(_greetingResponses);
             }
 
@@ -395,16 +476,15 @@ namespace CybersecurityBotWPF.Services
             // Help
             if (input.Contains("what can i ask") || input.Contains("help") || input.Contains("topics"))
             {
-                return $"📚 Topics I can help with, {userName}:\n\n🔐 Password Safety\n🎣 Phishing & Scams\n🔒 Data Privacy\n🌐 Safe Browsing\n🛡️ Malware Protection\n🧠 Social Engineering\n🔑 MFA/2FA\n💾 Secure Backups\n🆔 Identity Theft\n🔄 Software Updates\n\n💡 Try asking about any of these topics! After I respond, say 'tell me more' or 'another tip'!";
+                return $"📚 Topics I can help with, {userName}:\n\n🔐 Password Safety\n🎣 Phishing & Scams\n🔒 Data Privacy\n🌐 Safe Browsing\n🛡️ Malware Protection\n🧠 Social Engineering\n🔑 MFA/2FA\n💾 Secure Backups\n🆔 Identity Theft\n🔄 Software Updates\n\n💡 Tell me how you're feeling (worried, curious, frustrated) and I'll adjust my responses to help you better!";
             }
 
             // Default
             List<string> defaultResponses = new List<string>
             {
-                $"That's an interesting question, {userName}! 🤔 I specialize in cybersecurity topics. Try asking me about passwords, phishing, privacy, or type 'help' to see all topics!",
-                $"Great question, {userName}! 💭 I can help with password safety, phishing scams, privacy protection, and more. What would you like to learn about?",
-                $"I love your curiosity, {userName}! 🌟 Why not ask me about MFA, secure backups, or identity theft? I have lots of tips to share!",
-                $"Thanks for asking, {userName}! 🙏 I know about 10+ cybersecurity topics. Try typing 'password tips' or 'phishing advice' to get started!"
+                $"That's an interesting question, {userName}! 🤔 I specialize in cybersecurity topics. Try asking me about passwords, phishing, or privacy.\n\n💡 If you're worried or curious about something, just tell me and I'll help!",
+                $"Great question, {userName}! 💭 I can help with password safety, phishing scams, privacy protection, and more. What would you like to learn about?\n\n💡 Feeling worried about something? Let me know and I'll share practical tips!",
+                $"I love your curiosity, {userName}! 🌟 Try asking me about MFA, secure backups, or identity theft.\n\n💡 Whatever you're concerned about, I'm here to help make cybersecurity easier for you!"
             };
 
             return GetRandomResponse(defaultResponses);

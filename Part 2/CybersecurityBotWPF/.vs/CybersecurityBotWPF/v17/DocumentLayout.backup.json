@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|solutionrelative:cybersecuritybotwpf\\services\\responseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 2\\cybersecuritybotwpf\\cybersecuritybotwpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|solutionrelative:cybersecuritybotwpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|c:\\users\\rf9re\\onedrive - advtech ltd\\emeris 2026\\semester 1\\prog6221\\poe\\st10493664-prog6221-poe\\part 2\\cybersecuritybotwpf\\cybersecuritybotwpf\\services\\sentimentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68ACDC14-5B58-4B5A-A23E-C4FE9F7E261B}|CybersecurityBotWPF\\CybersecurityBotWPF.csproj|solutionrelative:cybersecuritybotwpf\\services\\sentimentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,22 +28,22 @@
               "RelativeDocumentMoniker": "CybersecurityBotWPF\\Services\\ResponseService.cs",
               "ToolTip": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\Services\\ResponseService.cs",
               "RelativeToolTip": "CybersecurityBotWPF\\Services\\ResponseService.cs",
-              "ViewState": "AgIAAIkBAAAAAAAAAAAIwKkBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAOsBAAAAAAAAAAAIwPkBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T12:33:53.389Z",
+              "WhenOpened": "2026-05-13T13:12:16.15Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "CybersecurityBotWPF\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\MainWindow.xaml.cs",
-              "RelativeToolTip": "CybersecurityBotWPF\\MainWindow.xaml.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAAACgAAABDAAAAAAAAAA==",
+              "Title": "SentimentService.cs",
+              "DocumentMoniker": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\Services\\SentimentService.cs",
+              "RelativeDocumentMoniker": "CybersecurityBotWPF\\Services\\SentimentService.cs",
+              "ToolTip": "C:\\Users\\rf9re\\OneDrive - ADvTECH Ltd\\Emeris 2026\\Semester 1\\PROG6221\\POE\\ST10493664-PROG6221-POE\\Part 2\\CybersecurityBotWPF\\CybersecurityBotWPF\\Services\\SentimentService.cs",
+              "RelativeToolTip": "CybersecurityBotWPF\\Services\\SentimentService.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAIwIQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T12:18:57.157Z",
+              "WhenOpened": "2026-05-13T13:08:32.755Z",
               "EditorCaption": ""
             }
           ]

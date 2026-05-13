@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.IO;
+using System.Threading.Tasks;
 using CybersecurityBotWPF.Models;
 using CybersecurityBotWPF.Services;
 
@@ -18,6 +19,7 @@ namespace CybersecurityBotWPF
         private ConversationMemory _memory;
         private string _currentUserName = "Guest";
         private SoundPlayer _soundPlayer;
+        private bool _isTyping = false;
 
         public MainWindow()
         {
@@ -25,7 +27,8 @@ namespace CybersecurityBotWPF
             LoadAsciiArt();
             InitializeServices();
 
-            AddBotMessage("Hello! I'm your Cybersecurity Awareness Assistant. What's your name?");
+            // Welcome message with typing effect
+            AddBotMessageWithTyping("Hello! I'm your Cybersecurity Awareness Assistant. What's your name?");
         }
 
         private void LoadAsciiArt()
@@ -56,7 +59,7 @@ namespace CybersecurityBotWPF
         private void PlayVoiceButton_Click(object sender, RoutedEventArgs e)
         {
             PlayVoiceGreeting();
-            AddBotMessage("🔊 Playing greeting message...");
+            AddBotMessageWithTyping("🔊 Playing greeting message...");
         }
 
         private void PlayVoiceGreeting()
@@ -78,12 +81,12 @@ namespace CybersecurityBotWPF
                 }
                 else
                 {
-                    AddBotMessage("(Voice greeting file not found)");
+                    AddBotMessageWithTyping("(Voice greeting file not found)");
                 }
             }
             catch (Exception ex)
             {
-                AddBotMessage($"(Audio error: {ex.Message})");
+                AddBotMessageWithTyping($"(Audio error: {ex.Message})");
             }
         }
 
@@ -95,12 +98,21 @@ namespace CybersecurityBotWPF
                 _currentUserName = newName;
                 _memory.UserName = _currentUserName;
 
-                AddBotMessage($"Nice to meet you, {_currentUserName}! I'm here to help you stay safe online. What would you like to know about cybersecurity?");
-                AddQuickTopicSuggestions();
+                AddBotMessageWithTyping($"Nice to meet you, {_currentUserName}! I'm here to help you stay safe online. What would you like to know about cybersecurity?");
+
+                // Add quick topics after a short delay
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromMilliseconds(2000);
+                timer.Tick += (s, ev) =>
+                {
+                    timer.Stop();
+                    AddQuickTopicSuggestions();
+                };
+                timer.Start();
             }
             else
             {
-                AddBotMessage("Please enter a valid name.");
+                AddBotMessageWithTyping("Please enter a valid name.");
             }
         }
 
@@ -118,8 +130,10 @@ namespace CybersecurityBotWPF
             }
         }
 
-        private void SendUserMessage()
+        private async void SendUserMessage()
         {
+            if (_isTyping) return; // Don't allow input while bot is typing
+
             string userMessage = MessageInputBox.Text.Trim();
             if (string.IsNullOrWhiteSpace(userMessage))
                 return;
@@ -131,15 +145,9 @@ namespace CybersecurityBotWPF
             _memory.AddToHistory(userMessage, true);
             string botResponse = _responseService.GetResponse(userMessage, sentiment, _currentUserName, _memory);
 
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(500);
-            timer.Tick += (s, e) =>
-            {
-                timer.Stop();
-                AddBotMessage(botResponse);
-                _memory.AddToHistory(botResponse, false);
-            };
-            timer.Start();
+            // Add typing effect for bot response
+            await AddBotMessageWithTypingAsync(botResponse);
+            _memory.AddToHistory(botResponse, false);
         }
 
         private void AddUserMessage(string message)
@@ -208,17 +216,15 @@ namespace CybersecurityBotWPF
             ScrollToBottom();
         }
 
+        // Regular bot message without typing effect (for quick responses)
         private void AddBotMessage(string message)
         {
-            // Remove any asterisks from the message
             string cleanMessage = message.Replace("*", "");
 
-            // Create a grid for proper icon and message alignment
             Grid messageGrid = new Grid();
             messageGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             messageGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
-            // Icon column (fixed width with spacing)
             Border iconBorder = new Border
             {
                 Width = 40,
@@ -235,13 +241,12 @@ namespace CybersecurityBotWPF
             {
                 Text = "🤖",
                 FontSize = 22,
-                Foreground = Brushes.White,  // White icon
+                Foreground = Brushes.White,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center
             };
             iconBorder.Child = icon;
 
-            // Message column
             Border messageBorder = new Border
             {
                 Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2C2C3E")),
@@ -264,13 +269,11 @@ namespace CybersecurityBotWPF
             };
             messageBorder.Child = messageText;
 
-            // Add to grid
             Grid.SetColumn(iconBorder, 0);
             Grid.SetColumn(messageBorder, 1);
             messageGrid.Children.Add(iconBorder);
             messageGrid.Children.Add(messageBorder);
 
-            // Container border
             Border container = new Border
             {
                 Margin = new Thickness(10, 5, 50, 5),
@@ -281,9 +284,95 @@ namespace CybersecurityBotWPF
             ScrollToBottom();
         }
 
+        // Bot message with typing effect (animated character by character)
+        private async Task AddBotMessageWithTypingAsync(string message)
+        {
+            _isTyping = true;
+            string cleanMessage = message.Replace("*", "");
+
+            // Create the message container first
+            Grid messageGrid = new Grid();
+            messageGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            messageGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+            Border iconBorder = new Border
+            {
+                Width = 40,
+                Height = 40,
+                CornerRadius = new CornerRadius(20),
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2C2C3E")),
+                BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9B59B6")),
+                BorderThickness = new Thickness(1),
+                Margin = new Thickness(0, 0, 15, 0),
+                VerticalAlignment = VerticalAlignment.Top
+            };
+
+            TextBlock icon = new TextBlock
+            {
+                Text = "🤖",
+                FontSize = 22,
+                Foreground = Brushes.White,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            iconBorder.Child = icon;
+
+            Border messageBorder = new Border
+            {
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2C2C3E")),
+                CornerRadius = new CornerRadius(15),
+                Padding = new Thickness(15, 10, 15, 10),
+                BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9B59B6")),
+                BorderThickness = new Thickness(1),
+                Margin = new Thickness(0, 0, 20, 5),
+                MaxWidth = 550,
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+
+            TextBlock messageText = new TextBlock
+            {
+                Text = "",
+                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#D5B4E6")),
+                FontSize = 14,
+                TextWrapping = TextWrapping.Wrap,
+                FontFamily = new FontFamily("Segoe UI")
+            };
+            messageBorder.Child = messageText;
+
+            Grid.SetColumn(iconBorder, 0);
+            Grid.SetColumn(messageBorder, 1);
+            messageGrid.Children.Add(iconBorder);
+            messageGrid.Children.Add(messageBorder);
+
+            Border container = new Border
+            {
+                Margin = new Thickness(10, 5, 50, 5),
+                Child = messageGrid
+            };
+
+            ChatMessagesPanel.Children.Add(container);
+            ScrollToBottom();
+
+            // Typing animation - add characters one by one
+            for (int i = 0; i <= cleanMessage.Length; i++)
+            {
+                messageText.Text = cleanMessage.Substring(0, i);
+                await Task.Delay(15); // 15ms delay between characters for natural typing feel
+                ScrollToBottom();
+            }
+
+            _isTyping = false;
+        }
+
+        // Synchronous version for simple messages (no typing effect needed)
+        private void AddBotMessageWithTyping(string message)
+        {
+            _ = AddBotMessageWithTypingAsync(message);
+        }
+
         private void AddQuickTopicSuggestions()
         {
-            AddBotMessage("You can ask me about:\n• Password safety\n• Phishing scams\n• Safe browsing\n• Malware protection\n• Social engineering\n• Data privacy\n• Multi-factor authentication (MFA)\n• Secure backups\n• Identity theft");
+            AddBotMessageWithTyping("You can ask me about:\n• Password safety\n• Phishing scams\n• Safe browsing\n• Malware protection\n• Social engineering\n• Data privacy\n• Multi-factor authentication (MFA)\n• Secure backups\n• Identity theft");
         }
 
         private void QuickTopic_Click(object sender, RoutedEventArgs e)
@@ -301,7 +390,7 @@ namespace CybersecurityBotWPF
             ChatMessagesPanel.Children.Clear();
             MessageInputBox.Clear();
             _memory.ClearHistory();
-            AddBotMessage("Chat cleared! How can I help you today?");
+            AddBotMessageWithTyping("Chat cleared! How can I help you today?");
         }
 
         private void ScrollToBottom()

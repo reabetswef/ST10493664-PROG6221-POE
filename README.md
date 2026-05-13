@@ -4,7 +4,7 @@
 ---
 
 ## Overview
-The Cybersecurity Awareness Chatbot is a .NET 10.0 WPF (Windows Presentation Foundation) desktop application developed in Visual Studio 2026. It is designed to educate users on basic cybersecurity principles through an engaging graphical user interface with voice interaction, sentiment detection, and conversational memory.
+The Cybersecurity Awareness Chatbot is a .NET 10.0 WPF (Windows Presentation Foundation) desktop application developed in Visual Studio 2022. It is designed to educate users on basic cybersecurity principles through an engaging graphical user interface with voice interaction, sentiment detection, and conversational memory.
 
 The chatbot provides guidance on topics such as password security, phishing scams, safe browsing practices, malware protection, social engineering, data privacy, multi-factor authentication, secure backups, identity theft prevention, and general online safety awareness. The application has been upgraded from a console application to a modern WPF interface with enhanced features for Part 2 of the POE.
 
@@ -84,10 +84,10 @@ The chatbot responds to questions about:
 ---
 
 ## Technologies Used
-- **C# (.NET 10.0)** - Core programming language
+- **C# (.NET 8.0)** - Core programming language
 - **WPF (Windows Presentation Foundation)** - GUI framework
 - **XAML** - User interface markup language
-- **Visual Studio 2026** - Development environment
+- **Visual Studio 2022** - Development environment
 - **System.Media** - Audio playback for voice greeting
 - **Object-Oriented Programming (OOP)** - Code structure with multiple classes
 - **Generic Collections** - Dictionaries and Lists for data management
@@ -170,7 +170,7 @@ Users can type natural language inputs such as:
 ## Requirements
 - **.NET 10.0 SDK** or later
 - **Windows OS** (required for WPF and System.Media audio playback)
-- **Visual Studio 2026** recommended for development
+- **Visual Studio 2022** recommended for development
 - **greeting.wav** audio file placed in the `Assets` folder (optional)
 
 ---

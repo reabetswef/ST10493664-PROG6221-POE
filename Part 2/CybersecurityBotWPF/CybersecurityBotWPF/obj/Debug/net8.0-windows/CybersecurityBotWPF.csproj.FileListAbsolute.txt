@@ -1,4 +1,3 @@
-C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\bin\Debug\net8.0-windows\Assets\greeting.wav
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\bin\Debug\net8.0-windows\CybersecurityBotWPF.exe
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\bin\Debug\net8.0-windows\CybersecurityBotWPF.deps.json
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\bin\Debug\net8.0-windows\CybersecurityBotWPF.runtimeconfig.json
@@ -8,7 +7,6 @@ C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST1049
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\obj\Debug\net8.0-windows\App.baml
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\obj\Debug\net8.0-windows\MainWindow.g.cs
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\obj\Debug\net8.0-windows\App.g.cs
-C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\obj\Debug\net8.0-windows\CybersecurityBotWPF_Content.g.cs
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\obj\Debug\net8.0-windows\CybersecurityBotWPF_MarkupCompile.cache
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\obj\Debug\net8.0-windows\CybersecurityBotWPF.g.resources
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\obj\Debug\net8.0-windows\CybersecurityBotWPF.GeneratedMSBuildEditorConfig.editorconfig
@@ -21,3 +19,5 @@ C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST1049
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\obj\Debug\net8.0-windows\CybersecurityBotWPF.pdb
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\obj\Debug\net8.0-windows\CybersecurityBotWPF.genruntimeconfig.cache
 C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\obj\Debug\net8.0-windows\ref\CybersecurityBotWPF.dll
+C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\bin\Debug\net8.0-windows\Assets\greeting.wav
+C:\Users\rf9re\OneDrive - ADvTECH Ltd\Emeris 2026\Semester 1\PROG6221\POE\ST10493664-PROG6221-POE\Part 2\CybersecurityBotWPF\CybersecurityBotWPF\obj\Debug\net8.0-windows\CybersecurityBotWPF_Content.g.cs
